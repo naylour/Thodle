@@ -1,0 +1,37 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "ui": "tui",
+    "globalDependencies": [".env"],
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "env": ["*"],
+            "inputs": ["$TURBO_DEFAULT$", ".env"],
+            "outputs": [".svelte-kit/**", ".build/**", ".dist/**", ".vercel/**"]
+        },
+        "lint": {
+            "dependsOn": ["^lint"]
+        },
+        "check-types": {
+            "dependsOn": ["^check-types"]
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true,
+            "env": ["*"],
+            "inputs": ["$TURBO_DEFAULT$", ".env"]
+        },
+        "start": {
+            "cache": false,
+            "persistent": true,
+            "env": ["*"],
+            "inputs": ["$TURBO_DEFAULT$", ".env"]
+        },
+        "preview": {
+            "cache": false,
+            "persistent": true,
+            "env": ["*"],
+            "inputs": ["$TURBO_DEFAULT$", ".env"]
+        }
+    }
+}

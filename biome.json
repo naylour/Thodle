@@ -1,0 +1,67 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+    "vcs": {
+        "enabled": false,
+        "clientKind": "git",
+        "useIgnoreFile": false
+    },
+    "files": {
+        "ignoreUnknown": true,
+        "includes": ["**/*.{js,ts,html,json}"]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "attributePosition": "multiline",
+        "includes": ["**/*.{js,ts,html,json}"]
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "performance": "info",
+            "style": {
+                "noEnum": "info",
+                "recommended": true
+            },
+            "complexity": {
+                "noUselessEmptyExport": "off",
+                "recommended": true
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single",
+            "enabled": true,
+            "indentStyle": "space",
+            "indentWidth": 4
+        },
+        "linter": {
+            "enabled": true
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "html": {
+        "formatter": {
+            "attributePosition": "auto",
+            "indentWidth": 4,
+            "indentStyle": "space",
+            "bracketSameLine": true,
+            "enabled": true,
+            "indentScriptAndStyle": true,
+            "lineWidth": 120,
+            "lineEnding": "crlf",
+            "selfCloseVoidElements": "always",
+            "whitespaceSensitivity": "css"
+        }
+    }
+}

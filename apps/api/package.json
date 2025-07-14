@@ -1,0 +1,24 @@
+{
+    "name": "@app/api",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "devDependencies": {
+        "@types/bun": "latest",
+        "@repo/env": "workspace:*",
+        "@repo/utils": "workspace:*",
+        "@repo/typescript-config": "workspace:*"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "dev": "bun --watch run ./src/index.ts",
+        "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile ./build/server ./src/index.ts",
+        "preview": "./build/server",
+        "start": "./build/server"
+    },
+    "dependencies": {
+        "elysia": "^1.3.5"
+    }
+}
