@@ -11,12 +11,10 @@ const bot = new Bot<Bot.Context>(TELEGRAM_BOT_TOKEN, {
     },
 });
 
+
+// bot.use(parseMode)
 bot.use(commands());
 bot.use(baseCommands);
-
-bot.command('start', async (__context__) => {
-    await __context__.reply('Hello, world!');
-});
 
 await baseCommands.setCommands(bot);
 

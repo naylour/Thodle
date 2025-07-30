@@ -3,7 +3,8 @@ import type { Context as GrammyContext } from 'grammy';
 
 declare global {
     namespace Bot {
-        type Context = GrammyContext & CommandsFlavor<GrammyContext>;
+        type Context = GrammyContext &
+            CommandsFlavor<GrammyContext>;
     }
 }
 

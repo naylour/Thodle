@@ -50,8 +50,8 @@
                     <Button
                         href={link.href}
                         variant={page.url.pathname == link.href
-                            ? "fill"
-                            : "white"}
+                            ? "default"
+                            : "outline"}
                         class="flex-col justify-center gap-0 py-1 text-12px font-500"
                     >
                         <Icon class="size-4.8" />

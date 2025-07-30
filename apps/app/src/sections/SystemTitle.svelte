@@ -25,11 +25,14 @@
     class={[
         !tma.viewport.isFullscreen && "pt-2",
         tma.viewport.isFullscreen && "h-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))] fixed top-0 left-0 z-1",
-        "w-full flex justify-center items-end px-2 pb-1.5",
+        "w-full flex justify-center items-end pb-1.5",
     ]}
 >
     <div
-        class="flex items-center gap-1 h-8.5 p-0.5 rounded-3xl backdrop-blur-sm bg-background/10"
+        class={[
+            "flex items-center gap-1 h-8.5 p-0.5 rounded-3xl backdrop-blur-sm bg-background/10",
+            !tma.viewport.isFullscreen && "flex-row-reverse w-full justify-between bg-secondary/50 h-10 p-1!"
+        ]}
     >
         {#if user}
             <button

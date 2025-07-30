@@ -5,4 +5,5 @@ export { default as Button } from './Button.svelte';
 // export * as Drawer from './Drawer';
 export { default as Loader } from './Loader.svelte';
 export { default as Schedule } from './Schedule.svelte';
+export * as Tabs from './Tabs';
 export { default as Title } from './Title.svelte';

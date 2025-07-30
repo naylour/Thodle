@@ -1,14 +1,20 @@
 import type {
     ImpactHapticFeedbackStyle,
+    MainButtonState,
     NotificationHapticFeedbackType,
+    SecondaryButtonState,
 } from '@telegram-apps/sdk-svelte';
 import {
     backButton,
     hapticFeedback,
     init,
     initData,
+    isColorDark,
+    mainButton,
     miniApp,
+    on,
     retrieveLaunchParams,
+    secondaryButton,
     // on,
     settingsButton,
     swipeBehavior,
@@ -16,8 +22,9 @@ import {
     useSignal,
     viewport,
 } from '@telegram-apps/sdk-svelte';
-// import chroma from 'chroma-js';
+import chroma from 'chroma-js';
 import kebabCase from 'lodash.kebabcase';
+import { setMode } from 'mode-watcher';
 // import { setMode } from 'mode-watcher';
 import { getContext, setContext } from 'svelte';
 import { fromStore } from 'svelte/store';
@@ -25,11 +32,11 @@ import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import { page } from '$app/state';
 
-// const getValues = (oklch: string): number[] =>
-//     oklch
-//         .slice(6, oklch.length - 1)
-//         .split(' ')
-//         .map((str) => Number(str));
+const getValues = (oklch: string): number[] =>
+    oklch
+        .slice(6, oklch.length - 1)
+        .split(' ')
+        .map((str) => Number(str));
 
 class TMA {
     #initReady = $state.raw(false);
@@ -58,6 +65,14 @@ class TMA {
         return this.initData?.user;
     }
 
+    #theme = (bgColor?: string) => {
+        if (!bgColor) return;
+
+        if (isColorDark(bgColor)) {
+            setMode('dark');
+        } else setMode('light');
+    };
+
     constructor() {
         if (browser) {
             init({
@@ -71,6 +86,14 @@ class TMA {
             this.#initButtons();
 
             initData.restore();
+
+            on('theme_changed', (params) => {
+                this.#theme(params.theme_params.bg_color);
+                this.#changeTheme();
+            });
+            this.#theme(themeParams.backgroundColor());
+
+            this.#changeTheme();
         }
 
         $effect.root(() => {
@@ -90,26 +113,26 @@ class TMA {
         });
     }
 
-    // #changeTheme = () => {
-    //     const computed = getComputedStyle(document.documentElement);
+    #changeTheme = () => {
+        const computed = getComputedStyle(document.documentElement);
 
-    //     const primary = chroma.oklch(
-    //         // @ts-ignore
-    //         ...getValues(computed.getPropertyValue('--primary')),
-    //     );
-    //     const background = chroma.oklch(
-    //         // @ts-ignore
-    //         ...getValues(computed.getPropertyValue('--background')),
-    //     );
-    //     const secondary = chroma.oklch(
-    //         // @ts-ignore
-    //         ...getValues(computed.getPropertyValue('--secondary')),
-    //     );
+        const primary = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--primary')),
+        );
+        const background = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--background')),
+        );
+        const secondary = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--card')),
+        );
 
-    //     this.setHeaderColor(primary.hex('auto'));
-    //     this.setBackgroundColor(background.hex('auto'));
-    //     this.setBottomBarColor(secondary.hex('auto'));
-    // };
+        this.setHeaderColor(background.hex('auto'));
+        this.setBackgroundColor(background.hex('auto'));
+        this.setBottomBarColor(secondary.hex('auto'));
+    };
 
     setHeaderColor = (color: string) => {
         if (miniApp.isMounted()) miniApp.setHeaderColor(color);
@@ -249,7 +272,60 @@ class TMA {
                 this.#onSettingsButtonClick,
             );
         }
+
+         const computed = getComputedStyle(document.documentElement);
+
+        const primary = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--primary')),
+        );
+        const primaryForeground = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--primary-foreground')),
+        );
+        const secondary = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--secondary')),
+        );
+        const secondaryForeground = chroma.oklch(
+            // @ts-ignore
+            ...getValues(computed.getPropertyValue('--secondary-foreground')),
+        );
+
+        if (mainButton.mount.isAvailable()) {
+            mainButton.mount();
+
+            mainButton.setParams({
+                backgroundColor: primary.hex('auto'),
+                textColor: primaryForeground.hex('auto')
+            })
+        }
+        if (secondaryButton.mount.isAvailable()) {
+            secondaryButton.mount();
+
+            secondaryButton.setParams({
+                backgroundColor: secondary.hex('auto'),
+                textColor: secondaryForeground.hex('auto')
+            })
+        }
     };
+
+    set mainButton(state: Partial<Omit<MainButtonState, 'backgroundColor' | 'textColor'>>) {
+        if (mainButton.isMounted() && mainButton.isEnabled()) {
+            mainButton.setParams({
+                ...mainButton.state(),
+                ...state,
+            });
+        }
+    }
+    set secondaryButton(state: Partial<Omit<SecondaryButtonState, 'backgroundColor' | 'textColor'>>) {
+        if (secondaryButton.isMounted() && secondaryButton.isEnabled()) {
+            secondaryButton.setParams({
+                ...secondaryButton.state(),
+                ...state,
+            });
+        }
+    }
 }
 
 export const MINIAPP_KEY = Symbol('MINIAPP_KEY'),

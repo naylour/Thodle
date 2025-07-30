@@ -20,13 +20,9 @@
     $effect(() => {
         app.isLoad = tma.isReady;
     });
-
-    $effect.root(() => {
-        resetMode()
-    })
 </script>
 
-<ModeWatcher synchronousModeChanges disableTransitions  track  />
+<ModeWatcher />
 <SystemTitle />
 <div class="pt-4">
     {@render children()}

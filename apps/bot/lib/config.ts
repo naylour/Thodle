@@ -1,6 +1,5 @@
 import { useBotConfig } from '@repo/env/bot';
 import { useMode } from '@repo/env/mode';
-import { parse } from 'tldts';
 import { ulid } from 'ulid';
 
 
