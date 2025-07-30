@@ -1,4 +1,4 @@
-import type z from 'zod';
+import type z from 'zod/v4';
 import { EnvConfigSchema } from './env';
 
 export const PortsConfigSchema = EnvConfigSchema.pick({
@@ -11,5 +11,6 @@ export const PortsConfigSchema = EnvConfigSchema.pick({
 export type PortsConfigInputSchema = z.input<typeof PortsConfigSchema>;
 export type PortsConfigSchema = z.infer<typeof PortsConfigSchema>;
 
+// biome-ignore lint/suspicious/noExplicitAny: true
 export const usePortsConfig = (data: any): PortsConfigSchema =>
     PortsConfigSchema.parse(data);

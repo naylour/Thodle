@@ -1,8 +1,13 @@
 import { Elysia } from 'elysia';
-
 import { apiConfig, mode } from '$lib/config';
+import routes from './routes';
 
-const app = new Elysia()
+const app = new Elysia({
+    analytic: true,
+    name: 'Api Application',
+    precompile: true,
+})
+    .use(routes)
     .get('/', 'Hello, world!')
     .listen(apiConfig.PORT_API_APP);
 

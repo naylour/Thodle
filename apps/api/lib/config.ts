@@ -3,4 +3,4 @@ import { useMode } from '@repo/env/mode';
 
 export const apiConfig = useAPIConfig(Bun.env);
 export const mode = useMode(Bun.env);
-export const isTestEnv = mode === 'DEVELOPMENT' || mode == 'PREVIEW';
+export const isTestEnv = mode === 'DEVELOPMENT' || mode === 'PREVIEW';

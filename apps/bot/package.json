@@ -1,24 +1,22 @@
 {
-    "name": "@app/bot",
-    "module": "src/index.ts",
-    "type": "module",
-    "private": true,
-    "devDependencies": {
-        "@types/bun": "latest",
-        "@repo/env": "workspace:*",
-        "@repo/utils": "workspace:*",
-        "@repo/typescript-config": "workspace:*"
+    "dependencies": {
+        "@grammyjs/commands": "^1.1.0",
+        "grammy": "^1.37.0"
     },
+    "devDependencies": {
+        "@repo/env": "workspace:*",
+        "@repo/typescript-config": "workspace:*",
+        "@repo/utils": "workspace:*",
+        "@types/bun": "latest"
+    },
+    "module": "index.ts",
+    "name": "@app/bot",
     "peerDependencies": {
         "typescript": "^5"
     },
-    "dependencies": {
-        "grammy": "^1.37.0"
-    },
+    "private": true,
     "scripts": {
-        "dev": "bun --watch run ./src/index.ts",
-        "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile ./build/server ./src/index.ts",
-        "preview": "./build/server",
-        "start": "./build/server"
-    }
+        "dev": "bun --watch run src/index.ts"
+    },
+    "type": "module"
 }

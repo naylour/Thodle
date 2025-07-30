@@ -1,25 +1,25 @@
 {
-    "name": "@repo/env",
-    "module": "index.ts",
-    "type": "module",
     "devDependencies": {
-        "@types/bun": "latest",
-        "@repo/typescript-config": "workspace:*"
-    },
-    "peerDependencies": {
-        "typescript": "^5"
+        "@repo/typescript-config": "workspace:*",
+        "@types/bun": "latest"
     },
     "exports": {
         ".": "./index.ts",
+        "./api": "./api.ts",
         "./app": "./app.ts",
         "./bot": "./bot.ts",
         "./env": "./env.ts",
-        "./subs": "./subs.ts",
+        "./mode": "./mode.ts",
         "./ports": "./ports.ts",
-        "./api": "./api.ts",
-        "./mode": "./mode.ts"
+        "./subs": "./subs.ts"
+    },
+    "module": "index.ts",
+    "name": "@repo/env",
+    "peerDependencies": {
+        "typescript": "^5"
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "type": "module"
 }

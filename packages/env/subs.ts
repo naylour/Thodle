@@ -1,4 +1,4 @@
-import type z from 'zod';
+import type z from 'zod/v4';
 import { EnvConfigSchema } from './env';
 
 export const SubsConfigSchema = EnvConfigSchema.pick({
@@ -11,5 +11,6 @@ export const SubsConfigSchema = EnvConfigSchema.pick({
 export type SubsConfigInputSchema = z.input<typeof SubsConfigSchema>;
 export type SubsConfigSchema = z.infer<typeof SubsConfigSchema>;
 
+// biome-ignore lint/suspicious/noExplicitAny: true
 export const useSubsConfig = (data: any): SubsConfigSchema =>
     SubsConfigSchema.parse(data);

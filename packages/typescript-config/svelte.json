@@ -4,15 +4,10 @@
         "checkJs": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
-        "strict": true,
-        "moduleResolution": "NodeNext",
-        "module": "NodeNext",
-        "target": "ESNext",
-        "verbatimModuleSyntax": true,
-        "isolatedModules": true,
-        "lib": ["esnext", "DOM", "DOM.Iterable"]
+        "strict": true
     }
 }

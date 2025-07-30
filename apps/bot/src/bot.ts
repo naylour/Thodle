@@ -1,57 +1,25 @@
-import { usePortsConfig } from '@repo/env';
-import { useDeviceHosts } from '@repo/utils';
-
-import { isTestEnv, botConfig } from '$lib/config';
-
+import { commands } from '@grammyjs/commands';
 import { Bot } from 'grammy';
 
-const ports = usePortsConfig(Bun.env);
-const deviceHosts = useDeviceHosts();
+import { baseCommands } from '$lib/commands';
+import { mode, TELEGRAM_BOT_TOKEN } from '$lib/config';
 
-const bot = new Bot(
-    isTestEnv
-        ? botConfig.TELEGRAM_BOT_TESTING_TOKEN
-        : botConfig.TELEGRAM_BOT_TOKEN,
-    {
-        client: {
-            environment: isTestEnv ? 'test' : 'prod',
-            fetch: Bun.fetch,
-        },
+const bot = new Bot<Bot.Context>(TELEGRAM_BOT_TOKEN, {
+    client: {
+        environment: mode === 'PRODUCTION' ? 'prod' : 'test',
+        fetch: Bun.fetch,
     },
-);
+});
+
+bot.use(commands());
+bot.use(baseCommands);
 
 bot.command('start', async (__context__) => {
-    await __context__.reply('Hi, How are you!');
+    await __context__.reply('Hello, world!');
 });
 
-bot.command('app', async (__context__) => {
-    if (!isTestEnv) {
-        await __context__.reply('Недоступно!');
-        return;
-    }
-
-    if (deviceHosts.length) {
-        const url = new URL(`http:${deviceHosts[0]}`);
-        url.protocol = 'http';
-        url.port = `${ports.PORT_ADMIN_APP}`;
-
-        await __context__.reply('Nate', {
-            reply_markup: {
-                inline_keyboard: [
-                    [
-                        {
-                            text: 'Open MiniApp',
-                            web_app: {
-                                url: url.href,
-                            },
-                        },
-                    ],
-                ],
-            },
-        });
-    } else {
-        await __context__.reply('Не удалось сгенерировать ссылку!');
-    }
-});
+await baseCommands.setCommands(bot);
 
 export default bot;
+
+export { webhookCallback } from 'grammy';

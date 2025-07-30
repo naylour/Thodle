@@ -1,11 +1,16 @@
-import bot from './bot';
-
 import { mode } from '$lib/config';
+import bot from './bot';
+import webhook from './webhook';
 
 if (import.meta.main) {
-    bot.start({
-        onStart(botInfo) {
-            console.log(`Bot started in ${mode} mode!`);
-        },
-    });
+    if (mode === 'PRODUCTION') {
+        await webhook();
+    } else {
+        bot.start({
+            drop_pending_updates: true,
+            onStart(botInfo) {
+                console.log(mode, botInfo)
+            },
+        });
+    }
 }

@@ -1,67 +1,113 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-    "vcs": {
-        "enabled": false,
-        "clientKind": "git",
-        "useIgnoreFile": false
+    "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+    "assist": {
+        "actions": {
+            "recommended": true,
+            "source": {
+                "organizeImports": "on",
+                "recommended": true,
+                "useSortedKeys": "on",
+                "useSortedProperties": "on"
+            }
+        },
+        "enabled": true
     },
     "files": {
         "ignoreUnknown": true,
-        "includes": ["**/*.{js,ts,html,json}"]
+        "includes": [
+            "**/*.{js,ts,html,json}",
+            "!node_modules",
+            "!**/node_modules",
+            "!**/components/ui",
+            "!**/dist",
+            "!**/dist/*",
+            "!**/build",
+            "!**/build/*",
+            "!**/.svelte-kit"
+        ]
     },
     "formatter": {
-        "enabled": true,
-        "indentStyle": "space",
-        "indentWidth": 4,
         "attributePosition": "multiline",
-        "includes": ["**/*.{js,ts,html,json}"]
-    },
-    "linter": {
         "enabled": true,
-        "rules": {
-            "recommended": true,
-            "performance": "info",
-            "style": {
-                "noEnum": "info",
-                "recommended": true
-            },
-            "complexity": {
-                "noUselessEmptyExport": "off",
-                "recommended": true
-            }
+        "includes": [
+            "**/*.{js,ts,html,json}",
+            "!node_modules",
+            "!**/node_modules",
+            "!**/components/ui",
+            "!**/dist",
+            "!**/dist/*",
+            "!**/build",
+            "!**/build/*",
+            "!**/.svelte-kit"
+        ],
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "html": {
+        "formatter": {
+            "attributePosition": "auto",
+            "bracketSameLine": true,
+            "enabled": true,
+            "indentScriptAndStyle": true,
+            "indentStyle": "space",
+            "indentWidth": 4,
+            "lineEnding": "crlf",
+            "lineWidth": 120,
+            "selfCloseVoidElements": "always",
+            "whitespaceSensitivity": "css"
         }
     },
     "javascript": {
+        "assist": {
+            "enabled": true
+        },
         "formatter": {
-            "quoteStyle": "single",
             "enabled": true,
             "indentStyle": "space",
-            "indentWidth": 4
+            "indentWidth": 4,
+            "quoteStyle": "single"
         },
         "linter": {
             "enabled": true
         }
     },
-    "assist": {
+    "linter": {
         "enabled": true,
-        "actions": {
-            "source": {
-                "organizeImports": "on"
+        "includes": [
+            "**/*.{js,ts,html,json}",
+            "!**/node_modules",
+            "!node_modules",
+            "!**/components/ui",
+            "!**/dist",
+            "!**/dist/*",
+            "!**/build",
+            "!**/build/*",
+            "!**/.svelte-kit"
+        ],
+        "rules": {
+            "complexity": {
+                "noUselessEmptyExport": "off",
+                "recommended": true
+            },
+            "correctness": {
+                "noUnusedFunctionParameters": "info"
+            },
+            "performance": {
+                "noNamespaceImport": "off"
+            },
+            "recommended": true,
+            "style": {
+                "noEnum": "info",
+                "recommended": true
+            },
+            "suspicious": {
+                "noExplicitAny": "info"
             }
         }
     },
-    "html": {
-        "formatter": {
-            "attributePosition": "auto",
-            "indentWidth": 4,
-            "indentStyle": "space",
-            "bracketSameLine": true,
-            "enabled": true,
-            "indentScriptAndStyle": true,
-            "lineWidth": 120,
-            "lineEnding": "crlf",
-            "selfCloseVoidElements": "always",
-            "whitespaceSensitivity": "css"
-        }
+    "vcs": {
+        "clientKind": "git",
+        "enabled": false,
+        "useIgnoreFile": true
     }
 }

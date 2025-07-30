@@ -1,4 +1,4 @@
-import z from 'zod';
+import type { z } from 'zod/v4';
 import { EnvConfigSchema } from './env';
 
 export const APIConfigSchema = EnvConfigSchema.pick({
@@ -8,5 +8,6 @@ export const APIConfigSchema = EnvConfigSchema.pick({
 export type APIConfigSchema = z.infer<typeof APIConfigSchema>;
 export type APIConfigInputSchema = z.input<typeof APIConfigSchema>;
 
+// biome-ignore lint/suspicious/noExplicitAny: true
 export const useAPIConfig = (env: any): APIConfigSchema =>
     APIConfigSchema.parse(env);
