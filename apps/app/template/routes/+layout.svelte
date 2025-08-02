@@ -13,12 +13,14 @@
     import { fly, scale } from "svelte/transition";
     import { page } from "$app/state";
 
-    const { children } = $props();
+    const { children, data } = $props();
 
     if (browser) eruda();
 
     const app = setAppContext(),
         tma = setTMAContext();
+
+    app.state.apiURl = data.apiURL;
 
     $effect(() => {
         app.isLoad = tma.isReady;
@@ -35,6 +37,12 @@
         tma.isDark = app.mode.isDark;
 
         tma.changeTheme()
+
+        app.api.get('user', {
+            headers: {
+                'Accept': 'application/x-msgpack'
+            }
+        })
     });
 </script>
 

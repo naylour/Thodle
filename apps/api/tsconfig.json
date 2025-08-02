@@ -3,8 +3,8 @@
         "paths": {
             "$lib": ["./lib"],
             "$lib/*": ["./lib/*"],
-            "$middlewares": ["./middlewares"],
-            "$middlewares/*": ["./middlewares/*"],
+            "$middlewares": ["./lib/middlewares"],
+            "$middlewares/*": ["./lib/middlewares/*"],
         }
     },
     "extends": ["@repo/typescript-config/base.json"]

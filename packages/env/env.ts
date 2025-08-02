@@ -33,6 +33,7 @@ export const EnvConfigSchema = z.object({
     S3_PATH: z.string().url(),
     S3_PATH_HOSTED_STYLE: z.string().url(),
     S3_PROJECT_ID: z.string(),
+    S3_BUCKET_NAME: z.string(),
 
     SUB_ADMIN_APP: z.string().default('admin'),
     SUB_API_APP: z.string().default('api'),

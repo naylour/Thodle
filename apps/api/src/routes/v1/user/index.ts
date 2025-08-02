@@ -1,7 +1,16 @@
 import Elysia from "elysia";
+import messagePack from "$middlewares/messagePack";
 
 export default new Elysia({
     name: 'RootRouter_V1',
     prefix: '/user',
     tags: ['Thoth', 'User'],
-}).get('/', 'Hello, from user endpoint!')
+})
+.use(messagePack)
+.get('/', ({ headers, msgpack }) => {
+    return {
+        message: 'Hello, world!'
+    };
+}, {
+    useMsgPack: true
+})
