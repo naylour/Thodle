@@ -9,7 +9,7 @@ if (import.meta.main) {
         bot.start({
             drop_pending_updates: true,
             onStart(botInfo) {
-                console.log(mode, botInfo)
+                console.log(mode, botInfo);
             },
         });
     }

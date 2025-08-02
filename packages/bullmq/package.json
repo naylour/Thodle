@@ -1,4 +1,8 @@
 {
+    "dependencies": {
+        "bullmq": "^5.56.8",
+        "ioredis": "^5.6.1"
+    },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",
         "@types/bun": "latest"
@@ -8,9 +12,5 @@
     "peerDependencies": {
         "typescript": "^5"
     },
-    "type": "module",
-    "dependencies": {
-        "bullmq": "^5.56.8",
-        "ioredis": "^5.6.1"
-    }
+    "type": "module"
 }

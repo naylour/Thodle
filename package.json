@@ -3,6 +3,7 @@
         "@lucide/lab": "^0.1.2",
         "@lucide/svelte": "^0.528.0",
         "@sveltejs/amp": "^1.1.4",
+        "animejs": "^4.1.2",
         "lodash.kebabcase": "^4.1.1",
         "nuqs-svelte": "^1.2.1",
         "tldts": "^7.0.10",
@@ -27,7 +28,14 @@
         "build": "MODE=BUILDING bun --bun turbo run build",
         "dev": "MODE=DEVELOPMENT bun --bun turbo run dev",
         "preview": "MODE=PREVIEW bun --bun turbo run preview",
-        "start": "MODE=PRODUCTION bun --bun turbo run start"
+        "start": "MODE=PRODUCTION bun --bun turbo run start",
+        "db:deploy": "bun --bun turbo run db:deploy",
+        "db:generate": "bun --bun turbo run db:generate",
+        "db:migrate": "bun --bun turbo run db:migrate",
+        "db:studio": "bun --bun turbo run db:studio"
+    },
+    "prisma": {
+        "schema": "./packages/database/prisma/schema.prisma"
     },
     "workspaces": [
         "apps/*",

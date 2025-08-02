@@ -3,7 +3,7 @@
     "globalDependencies": [".env"],
     "tasks": {
         "build": {
-            "dependsOn": ["^build"],
+            "dependsOn": ["^build", "^db:generate"],
             "env": ["*"],
             "inputs": ["$TURBO_DEFAULT$", ".env"],
             "outputs": [".svelte-kit/**", ".build/**", ".dist/**", ".vercel/**"]
@@ -11,11 +11,27 @@
         "check-types": {
             "dependsOn": ["^check-types"]
         },
+        "db:deploy": {
+            "cache": false
+        },
+        "db:generate": {
+            "cache": false
+        },
+        "db:studio": {
+            "cache": false,
+            "env": ["POSTGRE_URL"]
+        },
+        "db:migrate": {
+            "cache": false,
+            "persistent": true,
+            "env": ["POSTGRE_URL"]
+        },
         "dev": {
             "cache": false,
             "env": ["*"],
             "inputs": ["$TURBO_DEFAULT$", ".env"],
-            "persistent": true
+            "persistent": true,
+            "dependsOn": ["^db:generate"]
         },
         "lint": {
             "dependsOn": ["^lint"]

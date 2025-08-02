@@ -5,9 +5,9 @@ export const baseCommands = new CommandGroup<Bot.Context>();
 
 baseCommands.command('start', 'Перезапуск', async (__context__) => {
     const text = fmt`${b}${u}Hello${u}, ${b}`;
-    console.log(text.toString())
+    console.log(text.toString());
     await __context__.reply(text.text, {
-        entities: text.entities
+        entities: text.entities,
     });
 });
 

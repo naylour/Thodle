@@ -2,7 +2,9 @@
     "compilerOptions": {
         "paths": {
             "$lib": ["./lib"],
-            "$lib/*": ["./lib/*"]
+            "$lib/*": ["./lib/*"],
+            "$middlewares": ["./middlewares"],
+            "$middlewares/*": ["./middlewares/*"],
         }
     },
     "extends": ["@repo/typescript-config/base.json"]
