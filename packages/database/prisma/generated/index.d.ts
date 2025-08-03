@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model MaxAccount
+ * 
+ */
+export type MaxAccount = $Result.DefaultSelection<Prisma.$MaxAccountPayload>
+/**
  * Model TelegramAccount
  * 
  */
@@ -31,8 +36,8 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more TelegramAccounts
- * const telegramAccounts = await prisma.telegramAccount.findMany()
+ * // Fetch zero or more MaxAccounts
+ * const maxAccounts = await prisma.maxAccount.findMany()
  * ```
  *
  *
@@ -52,8 +57,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more TelegramAccounts
-   * const telegramAccounts = await prisma.telegramAccount.findMany()
+   * // Fetch zero or more MaxAccounts
+   * const maxAccounts = await prisma.maxAccount.findMany()
    * ```
    *
    *
@@ -150,6 +155,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.maxAccount`: Exposes CRUD operations for the **MaxAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MaxAccounts
+    * const maxAccounts = await prisma.maxAccount.findMany()
+    * ```
+    */
+  get maxAccount(): Prisma.MaxAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.telegramAccount`: Exposes CRUD operations for the **TelegramAccount** model.
     * Example usage:
     * ```ts
@@ -608,6 +623,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    MaxAccount: 'MaxAccount',
     TelegramAccount: 'TelegramAccount',
     User: 'User'
   };
@@ -628,10 +644,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "telegramAccount" | "user"
+      modelProps: "maxAccount" | "telegramAccount" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      MaxAccount: {
+        payload: Prisma.$MaxAccountPayload<ExtArgs>
+        fields: Prisma.MaxAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MaxAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MaxAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.MaxAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MaxAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          findMany: {
+            args: Prisma.MaxAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>[]
+          }
+          create: {
+            args: Prisma.MaxAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          createMany: {
+            args: Prisma.MaxAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MaxAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.MaxAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          update: {
+            args: Prisma.MaxAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.MaxAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MaxAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MaxAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.MaxAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaxAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.MaxAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMaxAccount>
+          }
+          groupBy: {
+            args: Prisma.MaxAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MaxAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MaxAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<MaxAccountCountAggregateOutputType> | number
+          }
+        }
+      }
       TelegramAccount: {
         payload: Prisma.$TelegramAccountPayload<ExtArgs>
         fields: Prisma.TelegramAccountFieldRefs
@@ -872,6 +962,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    maxAccount?: MaxAccountOmit
     telegramAccount?: TelegramAccountOmit
     user?: UserOmit
   }
@@ -974,10 +1065,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     TelegramAccount: number
+    MaxAccount: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TelegramAccount?: boolean | UserCountOutputTypeCountTelegramAccountArgs
+    MaxAccount?: boolean | UserCountOutputTypeCountMaxAccountArgs
   }
 
   // Custom InputTypes
@@ -998,10 +1091,1148 @@ export namespace Prisma {
     where?: TelegramAccountWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMaxAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaxAccountWhereInput
+  }
+
 
   /**
    * Models
    */
+
+  /**
+   * Model MaxAccount
+   */
+
+  export type AggregateMaxAccount = {
+    _count: MaxAccountCountAggregateOutputType | null
+    _avg: MaxAccountAvgAggregateOutputType | null
+    _sum: MaxAccountSumAggregateOutputType | null
+    _min: MaxAccountMinAggregateOutputType | null
+    _max: MaxAccountMaxAggregateOutputType | null
+  }
+
+  export type MaxAccountAvgAggregateOutputType = {
+    maxID: number | null
+  }
+
+  export type MaxAccountSumAggregateOutputType = {
+    maxID: bigint | null
+  }
+
+  export type MaxAccountMinAggregateOutputType = {
+    id: string | null
+    maxID: bigint | null
+    lastName: string | null
+    firstName: string | null
+    username: string | null
+    user: string | null
+    lang: string | null
+    updatedAt: Date | null
+  }
+
+  export type MaxAccountMaxAggregateOutputType = {
+    id: string | null
+    maxID: bigint | null
+    lastName: string | null
+    firstName: string | null
+    username: string | null
+    user: string | null
+    lang: string | null
+    updatedAt: Date | null
+  }
+
+  export type MaxAccountCountAggregateOutputType = {
+    id: number
+    maxID: number
+    lastName: number
+    firstName: number
+    username: number
+    user: number
+    lang: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MaxAccountAvgAggregateInputType = {
+    maxID?: true
+  }
+
+  export type MaxAccountSumAggregateInputType = {
+    maxID?: true
+  }
+
+  export type MaxAccountMinAggregateInputType = {
+    id?: true
+    maxID?: true
+    lastName?: true
+    firstName?: true
+    username?: true
+    user?: true
+    lang?: true
+    updatedAt?: true
+  }
+
+  export type MaxAccountMaxAggregateInputType = {
+    id?: true
+    maxID?: true
+    lastName?: true
+    firstName?: true
+    username?: true
+    user?: true
+    lang?: true
+    updatedAt?: true
+  }
+
+  export type MaxAccountCountAggregateInputType = {
+    id?: true
+    maxID?: true
+    lastName?: true
+    firstName?: true
+    username?: true
+    user?: true
+    lang?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MaxAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaxAccount to aggregate.
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaxAccounts to fetch.
+     */
+    orderBy?: MaxAccountOrderByWithRelationInput | MaxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MaxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MaxAccounts
+    **/
+    _count?: true | MaxAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MaxAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MaxAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MaxAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MaxAccountMaxAggregateInputType
+  }
+
+  export type GetMaxAccountAggregateType<T extends MaxAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateMaxAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMaxAccount[P]>
+      : GetScalarType<T[P], AggregateMaxAccount[P]>
+  }
+
+
+
+
+  export type MaxAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaxAccountWhereInput
+    orderBy?: MaxAccountOrderByWithAggregationInput | MaxAccountOrderByWithAggregationInput[]
+    by: MaxAccountScalarFieldEnum[] | MaxAccountScalarFieldEnum
+    having?: MaxAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MaxAccountCountAggregateInputType | true
+    _avg?: MaxAccountAvgAggregateInputType
+    _sum?: MaxAccountSumAggregateInputType
+    _min?: MaxAccountMinAggregateInputType
+    _max?: MaxAccountMaxAggregateInputType
+  }
+
+  export type MaxAccountGroupByOutputType = {
+    id: string
+    maxID: bigint
+    lastName: string | null
+    firstName: string
+    username: string | null
+    user: string
+    lang: string | null
+    updatedAt: Date
+    _count: MaxAccountCountAggregateOutputType | null
+    _avg: MaxAccountAvgAggregateOutputType | null
+    _sum: MaxAccountSumAggregateOutputType | null
+    _min: MaxAccountMinAggregateOutputType | null
+    _max: MaxAccountMaxAggregateOutputType | null
+  }
+
+  type GetMaxAccountGroupByPayload<T extends MaxAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MaxAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MaxAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MaxAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], MaxAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MaxAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    maxID?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    username?: boolean
+    user?: boolean
+    lang?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["maxAccount"]>
+
+  export type MaxAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    maxID?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    username?: boolean
+    user?: boolean
+    lang?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["maxAccount"]>
+
+  export type MaxAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    maxID?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    username?: boolean
+    user?: boolean
+    lang?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["maxAccount"]>
+
+  export type MaxAccountSelectScalar = {
+    id?: boolean
+    maxID?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    username?: boolean
+    user?: boolean
+    lang?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MaxAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "maxID" | "lastName" | "firstName" | "username" | "user" | "lang" | "updatedAt", ExtArgs["result"]["maxAccount"]>
+  export type MaxAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MaxAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MaxAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MaxAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MaxAccount"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      maxID: bigint
+      lastName: string | null
+      firstName: string
+      username: string | null
+      user: string
+      lang: string | null
+      updatedAt: Date
+    }, ExtArgs["result"]["maxAccount"]>
+    composites: {}
+  }
+
+  type MaxAccountGetPayload<S extends boolean | null | undefined | MaxAccountDefaultArgs> = $Result.GetResult<Prisma.$MaxAccountPayload, S>
+
+  type MaxAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MaxAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MaxAccountCountAggregateInputType | true
+    }
+
+  export interface MaxAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MaxAccount'], meta: { name: 'MaxAccount' } }
+    /**
+     * Find zero or one MaxAccount that matches the filter.
+     * @param {MaxAccountFindUniqueArgs} args - Arguments to find a MaxAccount
+     * @example
+     * // Get one MaxAccount
+     * const maxAccount = await prisma.maxAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MaxAccountFindUniqueArgs>(args: SelectSubset<T, MaxAccountFindUniqueArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MaxAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MaxAccountFindUniqueOrThrowArgs} args - Arguments to find a MaxAccount
+     * @example
+     * // Get one MaxAccount
+     * const maxAccount = await prisma.maxAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MaxAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, MaxAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaxAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountFindFirstArgs} args - Arguments to find a MaxAccount
+     * @example
+     * // Get one MaxAccount
+     * const maxAccount = await prisma.maxAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MaxAccountFindFirstArgs>(args?: SelectSubset<T, MaxAccountFindFirstArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaxAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountFindFirstOrThrowArgs} args - Arguments to find a MaxAccount
+     * @example
+     * // Get one MaxAccount
+     * const maxAccount = await prisma.maxAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MaxAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, MaxAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MaxAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MaxAccounts
+     * const maxAccounts = await prisma.maxAccount.findMany()
+     * 
+     * // Get first 10 MaxAccounts
+     * const maxAccounts = await prisma.maxAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const maxAccountWithIdOnly = await prisma.maxAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MaxAccountFindManyArgs>(args?: SelectSubset<T, MaxAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MaxAccount.
+     * @param {MaxAccountCreateArgs} args - Arguments to create a MaxAccount.
+     * @example
+     * // Create one MaxAccount
+     * const MaxAccount = await prisma.maxAccount.create({
+     *   data: {
+     *     // ... data to create a MaxAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends MaxAccountCreateArgs>(args: SelectSubset<T, MaxAccountCreateArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MaxAccounts.
+     * @param {MaxAccountCreateManyArgs} args - Arguments to create many MaxAccounts.
+     * @example
+     * // Create many MaxAccounts
+     * const maxAccount = await prisma.maxAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MaxAccountCreateManyArgs>(args?: SelectSubset<T, MaxAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MaxAccounts and returns the data saved in the database.
+     * @param {MaxAccountCreateManyAndReturnArgs} args - Arguments to create many MaxAccounts.
+     * @example
+     * // Create many MaxAccounts
+     * const maxAccount = await prisma.maxAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MaxAccounts and only return the `id`
+     * const maxAccountWithIdOnly = await prisma.maxAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MaxAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, MaxAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MaxAccount.
+     * @param {MaxAccountDeleteArgs} args - Arguments to delete one MaxAccount.
+     * @example
+     * // Delete one MaxAccount
+     * const MaxAccount = await prisma.maxAccount.delete({
+     *   where: {
+     *     // ... filter to delete one MaxAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MaxAccountDeleteArgs>(args: SelectSubset<T, MaxAccountDeleteArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MaxAccount.
+     * @param {MaxAccountUpdateArgs} args - Arguments to update one MaxAccount.
+     * @example
+     * // Update one MaxAccount
+     * const maxAccount = await prisma.maxAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MaxAccountUpdateArgs>(args: SelectSubset<T, MaxAccountUpdateArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MaxAccounts.
+     * @param {MaxAccountDeleteManyArgs} args - Arguments to filter MaxAccounts to delete.
+     * @example
+     * // Delete a few MaxAccounts
+     * const { count } = await prisma.maxAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MaxAccountDeleteManyArgs>(args?: SelectSubset<T, MaxAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaxAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MaxAccounts
+     * const maxAccount = await prisma.maxAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MaxAccountUpdateManyArgs>(args: SelectSubset<T, MaxAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaxAccounts and returns the data updated in the database.
+     * @param {MaxAccountUpdateManyAndReturnArgs} args - Arguments to update many MaxAccounts.
+     * @example
+     * // Update many MaxAccounts
+     * const maxAccount = await prisma.maxAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MaxAccounts and only return the `id`
+     * const maxAccountWithIdOnly = await prisma.maxAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MaxAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, MaxAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MaxAccount.
+     * @param {MaxAccountUpsertArgs} args - Arguments to update or create a MaxAccount.
+     * @example
+     * // Update or create a MaxAccount
+     * const maxAccount = await prisma.maxAccount.upsert({
+     *   create: {
+     *     // ... data to create a MaxAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MaxAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MaxAccountUpsertArgs>(args: SelectSubset<T, MaxAccountUpsertArgs<ExtArgs>>): Prisma__MaxAccountClient<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MaxAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountCountArgs} args - Arguments to filter MaxAccounts to count.
+     * @example
+     * // Count the number of MaxAccounts
+     * const count = await prisma.maxAccount.count({
+     *   where: {
+     *     // ... the filter for the MaxAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends MaxAccountCountArgs>(
+      args?: Subset<T, MaxAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MaxAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MaxAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MaxAccountAggregateArgs>(args: Subset<T, MaxAccountAggregateArgs>): Prisma.PrismaPromise<GetMaxAccountAggregateType<T>>
+
+    /**
+     * Group by MaxAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaxAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MaxAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MaxAccountGroupByArgs['orderBy'] }
+        : { orderBy?: MaxAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MaxAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMaxAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MaxAccount model
+   */
+  readonly fields: MaxAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MaxAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MaxAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MaxAccount model
+   */
+  interface MaxAccountFieldRefs {
+    readonly id: FieldRef<"MaxAccount", 'String'>
+    readonly maxID: FieldRef<"MaxAccount", 'BigInt'>
+    readonly lastName: FieldRef<"MaxAccount", 'String'>
+    readonly firstName: FieldRef<"MaxAccount", 'String'>
+    readonly username: FieldRef<"MaxAccount", 'String'>
+    readonly user: FieldRef<"MaxAccount", 'String'>
+    readonly lang: FieldRef<"MaxAccount", 'String'>
+    readonly updatedAt: FieldRef<"MaxAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MaxAccount findUnique
+   */
+  export type MaxAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MaxAccount to fetch.
+     */
+    where: MaxAccountWhereUniqueInput
+  }
+
+  /**
+   * MaxAccount findUniqueOrThrow
+   */
+  export type MaxAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MaxAccount to fetch.
+     */
+    where: MaxAccountWhereUniqueInput
+  }
+
+  /**
+   * MaxAccount findFirst
+   */
+  export type MaxAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MaxAccount to fetch.
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaxAccounts to fetch.
+     */
+    orderBy?: MaxAccountOrderByWithRelationInput | MaxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaxAccounts.
+     */
+    cursor?: MaxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaxAccounts.
+     */
+    distinct?: MaxAccountScalarFieldEnum | MaxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * MaxAccount findFirstOrThrow
+   */
+  export type MaxAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MaxAccount to fetch.
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaxAccounts to fetch.
+     */
+    orderBy?: MaxAccountOrderByWithRelationInput | MaxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaxAccounts.
+     */
+    cursor?: MaxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaxAccounts.
+     */
+    distinct?: MaxAccountScalarFieldEnum | MaxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * MaxAccount findMany
+   */
+  export type MaxAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MaxAccounts to fetch.
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaxAccounts to fetch.
+     */
+    orderBy?: MaxAccountOrderByWithRelationInput | MaxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MaxAccounts.
+     */
+    cursor?: MaxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaxAccounts.
+     */
+    skip?: number
+    distinct?: MaxAccountScalarFieldEnum | MaxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * MaxAccount create
+   */
+  export type MaxAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MaxAccount.
+     */
+    data: XOR<MaxAccountCreateInput, MaxAccountUncheckedCreateInput>
+  }
+
+  /**
+   * MaxAccount createMany
+   */
+  export type MaxAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MaxAccounts.
+     */
+    data: MaxAccountCreateManyInput | MaxAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MaxAccount createManyAndReturn
+   */
+  export type MaxAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many MaxAccounts.
+     */
+    data: MaxAccountCreateManyInput | MaxAccountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MaxAccount update
+   */
+  export type MaxAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MaxAccount.
+     */
+    data: XOR<MaxAccountUpdateInput, MaxAccountUncheckedUpdateInput>
+    /**
+     * Choose, which MaxAccount to update.
+     */
+    where: MaxAccountWhereUniqueInput
+  }
+
+  /**
+   * MaxAccount updateMany
+   */
+  export type MaxAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MaxAccounts.
+     */
+    data: XOR<MaxAccountUpdateManyMutationInput, MaxAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which MaxAccounts to update
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * Limit how many MaxAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaxAccount updateManyAndReturn
+   */
+  export type MaxAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update MaxAccounts.
+     */
+    data: XOR<MaxAccountUpdateManyMutationInput, MaxAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which MaxAccounts to update
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * Limit how many MaxAccounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MaxAccount upsert
+   */
+  export type MaxAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MaxAccount to update in case it exists.
+     */
+    where: MaxAccountWhereUniqueInput
+    /**
+     * In case the MaxAccount found by the `where` argument doesn't exist, create a new MaxAccount with this data.
+     */
+    create: XOR<MaxAccountCreateInput, MaxAccountUncheckedCreateInput>
+    /**
+     * In case the MaxAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MaxAccountUpdateInput, MaxAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * MaxAccount delete
+   */
+  export type MaxAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    /**
+     * Filter which MaxAccount to delete.
+     */
+    where: MaxAccountWhereUniqueInput
+  }
+
+  /**
+   * MaxAccount deleteMany
+   */
+  export type MaxAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaxAccounts to delete
+     */
+    where?: MaxAccountWhereInput
+    /**
+     * Limit how many MaxAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaxAccount without action
+   */
+  export type MaxAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model TelegramAccount
@@ -2287,7 +3518,7 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    avatar: string
+    avatar: string | null
     lastName: string | null
     firstName: string
     patronymic: string | null
@@ -2323,6 +3554,7 @@ export namespace Prisma {
     phone?: boolean
     updatedAt?: boolean
     TelegramAccount?: boolean | User$TelegramAccountArgs<ExtArgs>
+    MaxAccount?: boolean | User$MaxAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2362,6 +3594,7 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "avatar" | "lastName" | "firstName" | "patronymic" | "email" | "phone" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TelegramAccount?: boolean | User$TelegramAccountArgs<ExtArgs>
+    MaxAccount?: boolean | User$MaxAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2371,10 +3604,11 @@ export namespace Prisma {
     name: "User"
     objects: {
       TelegramAccount: Prisma.$TelegramAccountPayload<ExtArgs>[]
+      MaxAccount: Prisma.$MaxAccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      avatar: string
+      avatar: string | null
       lastName: string | null
       firstName: string
       patronymic: string | null
@@ -2776,6 +4010,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     TelegramAccount<T extends User$TelegramAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$TelegramAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TelegramAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MaxAccount<T extends User$MaxAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$MaxAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaxAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3225,6 +4460,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.MaxAccount
+   */
+  export type User$MaxAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaxAccount
+     */
+    select?: MaxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaxAccount
+     */
+    omit?: MaxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaxAccountInclude<ExtArgs> | null
+    where?: MaxAccountWhereInput
+    orderBy?: MaxAccountOrderByWithRelationInput | MaxAccountOrderByWithRelationInput[]
+    cursor?: MaxAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MaxAccountScalarFieldEnum | MaxAccountScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3255,6 +4514,20 @@ export namespace Prisma {
   };
 
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const MaxAccountScalarFieldEnum: {
+    id: 'id',
+    maxID: 'maxID',
+    lastName: 'lastName',
+    firstName: 'firstName',
+    username: 'username',
+    user: 'user',
+    lang: 'lang',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MaxAccountScalarFieldEnum = (typeof MaxAccountScalarFieldEnum)[keyof typeof MaxAccountScalarFieldEnum]
 
 
   export const TelegramAccountScalarFieldEnum: {
@@ -3387,6 +4660,78 @@ export namespace Prisma {
    */
 
 
+  export type MaxAccountWhereInput = {
+    AND?: MaxAccountWhereInput | MaxAccountWhereInput[]
+    OR?: MaxAccountWhereInput[]
+    NOT?: MaxAccountWhereInput | MaxAccountWhereInput[]
+    id?: StringFilter<"MaxAccount"> | string
+    maxID?: BigIntFilter<"MaxAccount"> | bigint | number
+    lastName?: StringNullableFilter<"MaxAccount"> | string | null
+    firstName?: StringFilter<"MaxAccount"> | string
+    username?: StringNullableFilter<"MaxAccount"> | string | null
+    user?: StringFilter<"MaxAccount"> | string
+    lang?: StringNullableFilter<"MaxAccount"> | string | null
+    updatedAt?: DateTimeFilter<"MaxAccount"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type MaxAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    maxID?: SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    username?: SortOrderInput | SortOrder
+    user?: SortOrder
+    lang?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type MaxAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    maxID?: bigint | number
+    username?: string
+    user?: string
+    AND?: MaxAccountWhereInput | MaxAccountWhereInput[]
+    OR?: MaxAccountWhereInput[]
+    NOT?: MaxAccountWhereInput | MaxAccountWhereInput[]
+    lastName?: StringNullableFilter<"MaxAccount"> | string | null
+    firstName?: StringFilter<"MaxAccount"> | string
+    lang?: StringNullableFilter<"MaxAccount"> | string | null
+    updatedAt?: DateTimeFilter<"MaxAccount"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "maxID" | "username" | "user">
+
+  export type MaxAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    maxID?: SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    username?: SortOrderInput | SortOrder
+    user?: SortOrder
+    lang?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: MaxAccountCountOrderByAggregateInput
+    _avg?: MaxAccountAvgOrderByAggregateInput
+    _max?: MaxAccountMaxOrderByAggregateInput
+    _min?: MaxAccountMinOrderByAggregateInput
+    _sum?: MaxAccountSumOrderByAggregateInput
+  }
+
+  export type MaxAccountScalarWhereWithAggregatesInput = {
+    AND?: MaxAccountScalarWhereWithAggregatesInput | MaxAccountScalarWhereWithAggregatesInput[]
+    OR?: MaxAccountScalarWhereWithAggregatesInput[]
+    NOT?: MaxAccountScalarWhereWithAggregatesInput | MaxAccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MaxAccount"> | string
+    maxID?: BigIntWithAggregatesFilter<"MaxAccount"> | bigint | number
+    lastName?: StringNullableWithAggregatesFilter<"MaxAccount"> | string | null
+    firstName?: StringWithAggregatesFilter<"MaxAccount"> | string
+    username?: StringNullableWithAggregatesFilter<"MaxAccount"> | string | null
+    user?: StringWithAggregatesFilter<"MaxAccount"> | string
+    lang?: StringNullableWithAggregatesFilter<"MaxAccount"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"MaxAccount"> | Date | string
+  }
+
   export type TelegramAccountWhereInput = {
     AND?: TelegramAccountWhereInput | TelegramAccountWhereInput[]
     OR?: TelegramAccountWhereInput[]
@@ -3464,7 +4809,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    avatar?: StringFilter<"User"> | string
+    avatar?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     firstName?: StringFilter<"User"> | string
     patronymic?: StringNullableFilter<"User"> | string | null
@@ -3472,11 +4817,12 @@ export namespace Prisma {
     phone?: StringNullableFilter<"User"> | string | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
     TelegramAccount?: TelegramAccountListRelationFilter
+    MaxAccount?: MaxAccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    avatar?: SortOrder
+    avatar?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     firstName?: SortOrder
     patronymic?: SortOrderInput | SortOrder
@@ -3484,6 +4830,7 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     TelegramAccount?: TelegramAccountOrderByRelationAggregateInput
+    MaxAccount?: MaxAccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3491,7 +4838,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    avatar?: StringFilter<"User"> | string
+    avatar?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     firstName?: StringFilter<"User"> | string
     patronymic?: StringNullableFilter<"User"> | string | null
@@ -3499,11 +4846,12 @@ export namespace Prisma {
     phone?: StringNullableFilter<"User"> | string | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
     TelegramAccount?: TelegramAccountListRelationFilter
+    MaxAccount?: MaxAccountListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    avatar?: SortOrder
+    avatar?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     firstName?: SortOrder
     patronymic?: SortOrderInput | SortOrder
@@ -3520,13 +4868,89 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    avatar?: StringWithAggregatesFilter<"User"> | string
+    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
     firstName?: StringWithAggregatesFilter<"User"> | string
     patronymic?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type MaxAccountCreateInput = {
+    id?: string
+    maxID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    lang?: string | null
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutMaxAccountInput
+  }
+
+  export type MaxAccountUncheckedCreateInput = {
+    id?: string
+    maxID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    user: string
+    lang?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MaxAccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutMaxAccountNestedInput
+  }
+
+  export type MaxAccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: StringFieldUpdateOperationsInput | string
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaxAccountCreateManyInput = {
+    id?: string
+    maxID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    user: string
+    lang?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MaxAccountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaxAccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: StringFieldUpdateOperationsInput | string
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TelegramAccountCreateInput = {
@@ -3607,7 +5031,7 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    avatar: string
+    avatar?: string | null
     lastName?: string | null
     firstName: string
     patronymic?: string | null
@@ -3615,11 +5039,12 @@ export namespace Prisma {
     phone?: string | null
     updatedAt?: Date | string
     TelegramAccount?: TelegramAccountCreateNestedManyWithoutUserInput
+    MaxAccount?: MaxAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    avatar: string
+    avatar?: string | null
     lastName?: string | null
     firstName: string
     patronymic?: string | null
@@ -3627,11 +5052,12 @@ export namespace Prisma {
     phone?: string | null
     updatedAt?: Date | string
     TelegramAccount?: TelegramAccountUncheckedCreateNestedManyWithoutUserInput
+    MaxAccount?: MaxAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3639,11 +5065,12 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     TelegramAccount?: TelegramAccountUpdateManyWithoutUserNestedInput
+    MaxAccount?: MaxAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3651,11 +5078,12 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     TelegramAccount?: TelegramAccountUncheckedUpdateManyWithoutUserNestedInput
+    MaxAccount?: MaxAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    avatar: string
+    avatar?: string | null
     lastName?: string | null
     firstName: string
     patronymic?: string | null
@@ -3666,7 +5094,7 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3677,7 +5105,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3748,9 +5176,9 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type TelegramAccountCountOrderByAggregateInput = {
+  export type MaxAccountCountOrderByAggregateInput = {
     id?: SortOrder
-    tgID?: SortOrder
+    maxID?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
     username?: SortOrder
@@ -3759,13 +5187,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type TelegramAccountAvgOrderByAggregateInput = {
-    tgID?: SortOrder
+  export type MaxAccountAvgOrderByAggregateInput = {
+    maxID?: SortOrder
   }
 
-  export type TelegramAccountMaxOrderByAggregateInput = {
+  export type MaxAccountMaxOrderByAggregateInput = {
     id?: SortOrder
-    tgID?: SortOrder
+    maxID?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
     username?: SortOrder
@@ -3774,9 +5202,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type TelegramAccountMinOrderByAggregateInput = {
+  export type MaxAccountMinOrderByAggregateInput = {
     id?: SortOrder
-    tgID?: SortOrder
+    maxID?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
     username?: SortOrder
@@ -3785,8 +5213,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type TelegramAccountSumOrderByAggregateInput = {
-    tgID?: SortOrder
+  export type MaxAccountSumOrderByAggregateInput = {
+    maxID?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3855,13 +5283,64 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type TelegramAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    tgID?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    username?: SortOrder
+    user?: SortOrder
+    lang?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TelegramAccountAvgOrderByAggregateInput = {
+    tgID?: SortOrder
+  }
+
+  export type TelegramAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tgID?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    username?: SortOrder
+    user?: SortOrder
+    lang?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TelegramAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    tgID?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    username?: SortOrder
+    user?: SortOrder
+    lang?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TelegramAccountSumOrderByAggregateInput = {
+    tgID?: SortOrder
+  }
+
   export type TelegramAccountListRelationFilter = {
     every?: TelegramAccountWhereInput
     some?: TelegramAccountWhereInput
     none?: TelegramAccountWhereInput
   }
 
+  export type MaxAccountListRelationFilter = {
+    every?: MaxAccountWhereInput
+    some?: MaxAccountWhereInput
+    none?: MaxAccountWhereInput
+  }
+
   export type TelegramAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MaxAccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3898,9 +5377,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type UserCreateNestedOneWithoutTelegramAccountInput = {
-    create?: XOR<UserCreateWithoutTelegramAccountInput, UserUncheckedCreateWithoutTelegramAccountInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTelegramAccountInput
+  export type UserCreateNestedOneWithoutMaxAccountInput = {
+    create?: XOR<UserCreateWithoutMaxAccountInput, UserUncheckedCreateWithoutMaxAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMaxAccountInput
     connect?: UserWhereUniqueInput
   }
 
@@ -3924,6 +5403,20 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type UserUpdateOneRequiredWithoutMaxAccountNestedInput = {
+    create?: XOR<UserCreateWithoutMaxAccountInput, UserUncheckedCreateWithoutMaxAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMaxAccountInput
+    upsert?: UserUpsertWithoutMaxAccountInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMaxAccountInput, UserUpdateWithoutMaxAccountInput>, UserUncheckedUpdateWithoutMaxAccountInput>
+  }
+
+  export type UserCreateNestedOneWithoutTelegramAccountInput = {
+    create?: XOR<UserCreateWithoutTelegramAccountInput, UserUncheckedCreateWithoutTelegramAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTelegramAccountInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type UserUpdateOneRequiredWithoutTelegramAccountNestedInput = {
     create?: XOR<UserCreateWithoutTelegramAccountInput, UserUncheckedCreateWithoutTelegramAccountInput>
     connectOrCreate?: UserCreateOrConnectWithoutTelegramAccountInput
@@ -3939,11 +5432,25 @@ export namespace Prisma {
     connect?: TelegramAccountWhereUniqueInput | TelegramAccountWhereUniqueInput[]
   }
 
+  export type MaxAccountCreateNestedManyWithoutUserInput = {
+    create?: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput> | MaxAccountCreateWithoutUserInput[] | MaxAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MaxAccountCreateOrConnectWithoutUserInput | MaxAccountCreateOrConnectWithoutUserInput[]
+    createMany?: MaxAccountCreateManyUserInputEnvelope
+    connect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+  }
+
   export type TelegramAccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TelegramAccountCreateWithoutUserInput, TelegramAccountUncheckedCreateWithoutUserInput> | TelegramAccountCreateWithoutUserInput[] | TelegramAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TelegramAccountCreateOrConnectWithoutUserInput | TelegramAccountCreateOrConnectWithoutUserInput[]
     createMany?: TelegramAccountCreateManyUserInputEnvelope
     connect?: TelegramAccountWhereUniqueInput | TelegramAccountWhereUniqueInput[]
+  }
+
+  export type MaxAccountUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput> | MaxAccountCreateWithoutUserInput[] | MaxAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MaxAccountCreateOrConnectWithoutUserInput | MaxAccountCreateOrConnectWithoutUserInput[]
+    createMany?: MaxAccountCreateManyUserInputEnvelope
+    connect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
   }
 
   export type TelegramAccountUpdateManyWithoutUserNestedInput = {
@@ -3960,6 +5467,20 @@ export namespace Prisma {
     deleteMany?: TelegramAccountScalarWhereInput | TelegramAccountScalarWhereInput[]
   }
 
+  export type MaxAccountUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput> | MaxAccountCreateWithoutUserInput[] | MaxAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MaxAccountCreateOrConnectWithoutUserInput | MaxAccountCreateOrConnectWithoutUserInput[]
+    upsert?: MaxAccountUpsertWithWhereUniqueWithoutUserInput | MaxAccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MaxAccountCreateManyUserInputEnvelope
+    set?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    disconnect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    delete?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    connect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    update?: MaxAccountUpdateWithWhereUniqueWithoutUserInput | MaxAccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MaxAccountUpdateManyWithWhereWithoutUserInput | MaxAccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MaxAccountScalarWhereInput | MaxAccountScalarWhereInput[]
+  }
+
   export type TelegramAccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TelegramAccountCreateWithoutUserInput, TelegramAccountUncheckedCreateWithoutUserInput> | TelegramAccountCreateWithoutUserInput[] | TelegramAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TelegramAccountCreateOrConnectWithoutUserInput | TelegramAccountCreateOrConnectWithoutUserInput[]
@@ -3972,6 +5493,20 @@ export namespace Prisma {
     update?: TelegramAccountUpdateWithWhereUniqueWithoutUserInput | TelegramAccountUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TelegramAccountUpdateManyWithWhereWithoutUserInput | TelegramAccountUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TelegramAccountScalarWhereInput | TelegramAccountScalarWhereInput[]
+  }
+
+  export type MaxAccountUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput> | MaxAccountCreateWithoutUserInput[] | MaxAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MaxAccountCreateOrConnectWithoutUserInput | MaxAccountCreateOrConnectWithoutUserInput[]
+    upsert?: MaxAccountUpsertWithWhereUniqueWithoutUserInput | MaxAccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MaxAccountCreateManyUserInputEnvelope
+    set?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    disconnect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    delete?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    connect?: MaxAccountWhereUniqueInput | MaxAccountWhereUniqueInput[]
+    update?: MaxAccountUpdateWithWhereUniqueWithoutUserInput | MaxAccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MaxAccountUpdateManyWithWhereWithoutUserInput | MaxAccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MaxAccountScalarWhereInput | MaxAccountScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4121,26 +5656,92 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type UserCreateWithoutTelegramAccountInput = {
+  export type UserCreateWithoutMaxAccountInput = {
     id?: string
-    avatar: string
+    avatar?: string | null
     lastName?: string | null
     firstName: string
     patronymic?: string | null
     email?: string | null
     phone?: string | null
     updatedAt?: Date | string
+    TelegramAccount?: TelegramAccountCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMaxAccountInput = {
+    id?: string
+    avatar?: string | null
+    lastName?: string | null
+    firstName: string
+    patronymic?: string | null
+    email?: string | null
+    phone?: string | null
+    updatedAt?: Date | string
+    TelegramAccount?: TelegramAccountUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMaxAccountInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMaxAccountInput, UserUncheckedCreateWithoutMaxAccountInput>
+  }
+
+  export type UserUpsertWithoutMaxAccountInput = {
+    update: XOR<UserUpdateWithoutMaxAccountInput, UserUncheckedUpdateWithoutMaxAccountInput>
+    create: XOR<UserCreateWithoutMaxAccountInput, UserUncheckedCreateWithoutMaxAccountInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMaxAccountInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMaxAccountInput, UserUncheckedUpdateWithoutMaxAccountInput>
+  }
+
+  export type UserUpdateWithoutMaxAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    patronymic?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    TelegramAccount?: TelegramAccountUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMaxAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    patronymic?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    TelegramAccount?: TelegramAccountUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutTelegramAccountInput = {
+    id?: string
+    avatar?: string | null
+    lastName?: string | null
+    firstName: string
+    patronymic?: string | null
+    email?: string | null
+    phone?: string | null
+    updatedAt?: Date | string
+    MaxAccount?: MaxAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTelegramAccountInput = {
     id?: string
-    avatar: string
+    avatar?: string | null
     lastName?: string | null
     firstName: string
     patronymic?: string | null
     email?: string | null
     phone?: string | null
     updatedAt?: Date | string
+    MaxAccount?: MaxAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTelegramAccountInput = {
@@ -4161,24 +5762,26 @@ export namespace Prisma {
 
   export type UserUpdateWithoutTelegramAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaxAccount?: MaxAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTelegramAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     patronymic?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaxAccount?: MaxAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TelegramAccountCreateWithoutUserInput = {
@@ -4208,6 +5811,36 @@ export namespace Prisma {
 
   export type TelegramAccountCreateManyUserInputEnvelope = {
     data: TelegramAccountCreateManyUserInput | TelegramAccountCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MaxAccountCreateWithoutUserInput = {
+    id?: string
+    maxID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    lang?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MaxAccountUncheckedCreateWithoutUserInput = {
+    id?: string
+    maxID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    lang?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MaxAccountCreateOrConnectWithoutUserInput = {
+    where: MaxAccountWhereUniqueInput
+    create: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type MaxAccountCreateManyUserInputEnvelope = {
+    data: MaxAccountCreateManyUserInput | MaxAccountCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -4241,9 +5874,49 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"TelegramAccount"> | Date | string
   }
 
+  export type MaxAccountUpsertWithWhereUniqueWithoutUserInput = {
+    where: MaxAccountWhereUniqueInput
+    update: XOR<MaxAccountUpdateWithoutUserInput, MaxAccountUncheckedUpdateWithoutUserInput>
+    create: XOR<MaxAccountCreateWithoutUserInput, MaxAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type MaxAccountUpdateWithWhereUniqueWithoutUserInput = {
+    where: MaxAccountWhereUniqueInput
+    data: XOR<MaxAccountUpdateWithoutUserInput, MaxAccountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MaxAccountUpdateManyWithWhereWithoutUserInput = {
+    where: MaxAccountScalarWhereInput
+    data: XOR<MaxAccountUpdateManyMutationInput, MaxAccountUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MaxAccountScalarWhereInput = {
+    AND?: MaxAccountScalarWhereInput | MaxAccountScalarWhereInput[]
+    OR?: MaxAccountScalarWhereInput[]
+    NOT?: MaxAccountScalarWhereInput | MaxAccountScalarWhereInput[]
+    id?: StringFilter<"MaxAccount"> | string
+    maxID?: BigIntFilter<"MaxAccount"> | bigint | number
+    lastName?: StringNullableFilter<"MaxAccount"> | string | null
+    firstName?: StringFilter<"MaxAccount"> | string
+    username?: StringNullableFilter<"MaxAccount"> | string | null
+    user?: StringFilter<"MaxAccount"> | string
+    lang?: StringNullableFilter<"MaxAccount"> | string | null
+    updatedAt?: DateTimeFilter<"MaxAccount"> | Date | string
+  }
+
   export type TelegramAccountCreateManyUserInput = {
     id?: string
     tgID: bigint | number
+    lastName?: string | null
+    firstName: string
+    username?: string | null
+    lang?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MaxAccountCreateManyUserInput = {
+    id?: string
+    maxID: bigint | number
     lastName?: string | null
     firstName: string
     username?: string | null
@@ -4274,6 +5947,36 @@ export namespace Prisma {
   export type TelegramAccountUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     tgID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaxAccountUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaxAccountUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    lang?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaxAccountUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    maxID?: BigIntFieldUpdateOperationsInput | bigint | number
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null

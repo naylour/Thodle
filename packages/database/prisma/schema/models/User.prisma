@@ -10,6 +10,7 @@ model User {
     phone String?
 
     TelegramAccount TelegramAccount[]
+    MaxAccount      MaxAccount[]
 
     updatedAt DateTime @updatedAt @map("updated_at")
 

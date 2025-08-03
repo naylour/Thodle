@@ -120,6 +120,17 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.MaxAccountScalarFieldEnum = {
+  id: 'id',
+  maxID: 'maxID',
+  lastName: 'lastName',
+  firstName: 'firstName',
+  username: 'username',
+  user: 'user',
+  lang: 'lang',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TelegramAccountScalarFieldEnum = {
   id: 'id',
   tgID: 'tgID',
@@ -159,6 +170,7 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
+  MaxAccount: 'MaxAccount',
   TelegramAccount: 'TelegramAccount',
   User: 'User'
 };
