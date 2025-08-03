@@ -2,16 +2,15 @@
     import { browser } from "$app/environment";
     import { Loader } from "$components";
     import eruda from "$lib/eruda";
-    import { SystemTitle } from "$sections";
+    import { Header } from "$sections";
     import { setAppContext, setTMAContext } from "$stores";
     import { ModeWatcher, resetMode } from "mode-watcher";
+    import { onMount } from "svelte";
+    import { scale } from "svelte/transition";
 </script>
 
 <script lang="ts">
     import "$styles/index.css";
-    import { onMount, untrack } from "svelte";
-    import { fly, scale } from "svelte/transition";
-    import { page } from "$app/state";
 
     const { children, data } = $props();
 
@@ -47,7 +46,7 @@
 </script>
 
 <ModeWatcher />
-<SystemTitle />
+<Header />
 {#if app.isLoad}
     <div
         class="pt-4"

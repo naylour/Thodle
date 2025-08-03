@@ -6,6 +6,9 @@
         "@types/bun": "latest",
         "prisma": "^6.13.0"
     },
+    "exports": {
+        ".": "./src/index.ts"
+    },
     "module": "src/index.ts",
     "name": "@repo/db",
     "peerDependencies": {
@@ -14,7 +17,7 @@
     "scripts": {
         "db:deploy": "bunx prisma migrate deploy",
         "db:generate": "bunx prisma generate",
-        "db:migrate": "bunx prisma migrate dev",
+        "db:migrate": "prisma migrate dev",
         "db:studio": "bunx prisma studio"
     },
     "type": "module"

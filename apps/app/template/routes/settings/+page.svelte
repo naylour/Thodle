@@ -6,6 +6,7 @@
     import { ScrollArea } from "$components/ui/scroll-area";
     import { Button } from "$components/ui/button";
     import { Schedule, ChangeTheme, Title } from "$components";
+    import { BlockRoot, BlockItem } from "$components/Block";
 
     import QuestionIcon from '@lucide/svelte/icons/message-circle-more'
     import QuestionAppIcon from '@lucide/svelte/icons/circle-question-mark'
@@ -21,14 +22,14 @@ import Helps from "./Helps.svelte";
     const app = useApp();
 
     // onMount(() => {
-    //     tma.secondaryButton = {
+    //     tma.mainButton = {
     //         isVisible: true,
     //         text: "Отменить изменения",
     //     };
     // });
 
     // onDestroy(() => {
-    //     tma.secondaryButton = {
+    //     tma.mainButton = {
     //         isVisible: false,
     //         text: "Нет текста",
     //     };
@@ -36,10 +37,17 @@ import Helps from "./Helps.svelte";
 </script>
 
 <article id="settings" class={[
-    "flex flex-col gap-2",
-    "[&_section]:not-first:[&_[data-slot=card]]:rounded-t-[10px]",
-    "[&_section]:not-last:[&_[data-slot=card]]:rounded-b-[10px]",
+    "flex flex-col gap-3",
+    // "[&_section]:not-first:[&_[data-slot=card]]:rounded-t-[10px]",
+    // "[&_section]:not-last:[&_[data-slot=card]]:rounded-b-[10px]",
 ]}>
     <Theme />
     <Helps />
+
+
+    <BlockRoot title="Настройки темы" signature=" Мы всегда готовы помочь вам сделать использование приложения максимально удобным!">
+        {#snippet elems()}
+            Hello
+        {/snippet}
+    </BlockRoot>
 </article>

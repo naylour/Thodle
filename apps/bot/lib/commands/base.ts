@@ -11,11 +11,8 @@ baseCommands.command('start', 'Перезапуск', async (__context__) => {
     });
 });
 
-baseCommands.command('settings', 'Настройки', async (__context__) => {
-    await __context__.reply('Hello, guys!');
-});
 
-baseCommands.command('help', 'Помощь', async (__context__) => {
+baseCommands.command('settings', 'Настройки', async (__context__) => {
     await __context__.reply('Hello, guys!');
 });
 
