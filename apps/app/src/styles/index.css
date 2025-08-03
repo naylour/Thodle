@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 @import "tw-animate-css";
-@import "./themes.css";
-
 @custom-variant dark (&:is(.dark *));
 
 
@@ -16,12 +14,9 @@
     @apply selection:bg-primary selection:text-primary-foreground;
   }
     body {
-        /* @apply border border-red-700; */
         @apply relative bg-background text-foreground font-sans pt-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))];
         @apply pb-[calc(var(--tma-content-safe-area-inset-bottom)+var(--tma-safe-area-inset-bottom))] w-dvw overflow-x-hidden;
-        @apply px-3;
-        /* @apply pl-[calc(var(--tma-content-safe-area-inset-left)+var(--tma-safe-area-inset-left)+8px)];
-        @apply pr-[calc(var(--tma-content-safe-area-inset-right)+var(--tma-safe-area-inset-right)+8px)]; */
+        /*@apply px-2;*/
     }
 
     :root:not([data-load=""]) body {
@@ -31,7 +26,7 @@
 
 
 :root {
-  --radius: 1.25rem;
+    --radius: 1rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -98,6 +93,13 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.488 0.243 264.376);
 }
+
+@theme {
+    --font-serif: 'Robot Serif', serif;
+    --font-sans: 'Robot', sans-serif;
+    --font-mono: 'Robot Mono', monospace;
+}
+
 
 .neutral {
 --primary: oklch(0.56 0.00 0);
@@ -224,10 +226,4 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-}
-
-@theme {
-    --font-serif: 'Robot Serif', serif;
-    --font-sans: 'Robot', sans-serif;
-    --font-mono: 'Robot Mono', monospace;
 }

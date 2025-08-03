@@ -1,0 +1,68 @@
+model MaxAccount {
+  id String @id @default(ulid())
+
+  maxID BigInt @unique @map("max_id")
+
+  lastName  String? @map("last_name")
+  firstName String  @map("first_name")
+  username  String? @unique
+  user      String  @unique
+  lang      String?
+
+  User User @relation(fields: [user], references: [id])
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("MaxAccounts")
+  @@schema("user")
+}
+
+model TelegramAccount {
+  id String @id @default(ulid())
+
+  tgID BigInt @unique @map("tg_id")
+
+  lastName  String? @map("last_name")
+  firstName String  @map("first_name")
+  username  String? @unique
+  user      String  @unique
+  lang      String?
+
+  User User @relation(fields: [user], references: [id])
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("TelegramAccounts")
+  @@schema("user")
+}
+
+model User {
+  id String @id @default(ulid())
+
+  avatar     String?
+  lastName   String? @map("last_name")
+  firstName  String  @map("first_name")
+  patronymic String?
+
+  email String?
+  phone String?
+
+  TelegramAccount TelegramAccount[]
+  MaxAccount      MaxAccount[]
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("Users")
+  @@schema("user")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRE_URL")
+  schemas  = ["default", "user"]
+}

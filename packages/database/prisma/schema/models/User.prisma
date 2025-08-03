@@ -1,0 +1,19 @@
+model User {
+    id String @id @default(ulid())
+
+    avatar     String?
+    lastName   String? @map("last_name")
+    firstName  String  @map("first_name")
+    patronymic String?
+
+    email String?
+    phone String?
+
+    TelegramAccount TelegramAccount[]
+    MaxAccount      MaxAccount[]
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("Users")
+    @@schema("user")
+}

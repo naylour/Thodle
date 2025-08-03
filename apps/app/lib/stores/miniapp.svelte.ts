@@ -233,7 +233,6 @@ class TMA {
             ) {
                 viewport.requestFullscreen();
             }
-
             if (
                 !viewport.isCssVarsBound() &&
                 viewport.bindCssVars.isAvailable()
