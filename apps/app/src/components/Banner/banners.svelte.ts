@@ -1,4 +1,3 @@
-import type { Snippet } from 'svelte';
 import { SvelteMap } from 'svelte/reactivity';
 import { ulid } from 'ulid';
 
@@ -18,21 +17,22 @@ export default new (class {
 
     banners = (key: string) => {
         return this.#banners.get(key) ?? [];
-    }
+    };
 
     initScope = (key: string) => {
-        if(!this.#banners.has(key)) this.#banners.set(key, []);
-    }
+        if (!this.#banners.has(key)) this.#banners.set(key, []);
+    };
 
     setBanner = (key: string = 'default', banner: Omit<Banner, 'id'>) => {
-        if(!this.#banners.has(key)) this.#banners.set(key, []);
+        if (!this.#banners.has(key)) this.#banners.set(key, []);
 
         const banners = this.#banners.get(key) ?? [];
 
-        const id = ulid()
+        const id = ulid();
 
         banners.push({
-            id, ...banner
+            id,
+            ...banner,
         });
 
         this.#banners.set(key, banners);
@@ -41,10 +41,13 @@ export default new (class {
     };
 
     removeBanner = (key: string, id: string) => {
-        if(this.#banners.has(key)) {
+        if (this.#banners.has(key)) {
             const banners = this.#banners.get(key) ?? [];
 
-            this.#banners.set(key, banners.filter(banner => banner.id !== id));
+            this.#banners.set(
+                key,
+                banners.filter((banner) => banner.id !== id),
+            );
         }
-    }
+    };
 })();

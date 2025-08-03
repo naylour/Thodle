@@ -11,7 +11,9 @@
         "./env": "./env.ts",
         "./mode": "./mode.ts",
         "./ports": "./ports.ts",
-        "./subs": "./subs.ts"
+        "./redis": "./redis.ts",
+        "./postgre": "./postgre.ts",
+        "./s3": "./s3.ts"
     },
     "module": "index.ts",
     "name": "@repo/env",

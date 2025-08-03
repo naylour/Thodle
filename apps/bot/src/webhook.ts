@@ -33,7 +33,7 @@ export default async () => {
     await bot.init();
 
     Bun.serve({
-        fetch: (req, server) => {
+        fetch: (req, _server) => {
             const url = new URL(req.url);
 
             const XTelegramBotApiSecretToken = req.headers.get(

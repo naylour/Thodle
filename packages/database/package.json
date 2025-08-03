@@ -1,0 +1,21 @@
+{
+    "dependencies": {
+        "@prisma/client": "^6.13.0"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "prisma": "^6.13.0"
+    },
+    "module": "src/index.ts",
+    "name": "@repo/db",
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "db:deploy": "bunx prisma migrate deploy",
+        "db:generate": "bunx prisma generate",
+        "db:migrate": "bunx prisma migrate dev",
+        "db:studio": "bunx prisma studio"
+    },
+    "type": "module"
+}

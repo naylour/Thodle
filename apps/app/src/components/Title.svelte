@@ -8,7 +8,7 @@
         variants: {
             level: {
                 1: "scroll-m-20 text-3xl tracking-tight lg:text-5xl",
-                2: "scroll-m-20 border-b pb-2 text-2xl tracking-tight transition-colors first:mt-0",
+                2: "scroll-m-20 pb-2 text-2xl tracking-tight transition-colors first:mt-0",
                 3: "scroll-m-20 text-xl tracking-tight",
                 4: "scroll-m-20 text-lg  tracking-tight",
                 5: "",

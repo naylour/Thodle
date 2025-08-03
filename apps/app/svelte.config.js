@@ -4,13 +4,25 @@ import adapter from 'svelte-adapter-bun-next';
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
+    compilerOptions: {
+        experimental: {
+            async: true,
+        },
+    },
     kit: {
         adapter: adapter(),
         alias: {
             $components: resolve('src', 'components'),
+            $remote: resolve('lib', 'remote'),
             $sections: resolve('src', 'sections'),
             $stores: resolve('lib', 'stores'),
             $styles: resolve('src', 'styles'),
+        },
+        // csrf: {
+        //     checkOrigin: false,
+        // },
+        experimental: {
+            remoteFunctions: true,
         },
         files: {
             appTemplate: resolve('template', 'index.html'),

@@ -6,7 +6,6 @@ export const BotConfigSchema = EnvConfigSchema.pick({
     APP_IP: true,
     PORT_BOT_APP: true,
     SUB_BOT_APP: true,
-    TELEGRAM_BOT_TESTING_TOKEN: true,
     TELEGRAM_BOT_TOKEN: true,
 });
 
