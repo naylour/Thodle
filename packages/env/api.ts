@@ -3,6 +3,8 @@ import { EnvConfigSchema } from './env';
 
 export const APIConfigSchema = EnvConfigSchema.pick({
     PORT_API_APP: true,
+    APP_HOST: true,
+
 });
 
 export type APIConfigSchema = z.infer<typeof APIConfigSchema>;

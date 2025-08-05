@@ -16,7 +16,7 @@ export default new Elysia({
             t.Union([
                 t.Literal('application/json'),
                 t.Literal('application/x-msgpack'),
-                t.Literal('*/*')
+                t.Literal('*/*'),
             ])
         )
     })

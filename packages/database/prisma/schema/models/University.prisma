@@ -1,0 +1,5 @@
+model University {
+    id String @id @default(ulid())
+
+    @@schema("default")
+}

@@ -30,10 +30,10 @@ export const EnvConfigSchema = z.object({
     S3_ACCESS_KEY: z.string(),
     S3_ACCESS_SECRET_KEY: z.string(),
     S3_API_ENDPOINT: z.string().url(),
+    S3_BUCKET_NAME: z.string(),
     S3_PATH: z.string().url(),
     S3_PATH_HOSTED_STYLE: z.string().url(),
     S3_PROJECT_ID: z.string(),
-    S3_BUCKET_NAME: z.string(),
 
     SUB_ADMIN_APP: z.string().default('admin'),
     SUB_API_APP: z.string().default('api'),

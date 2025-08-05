@@ -13,6 +13,7 @@
         "./ports": "./ports.ts",
         "./redis": "./redis.ts",
         "./postgre": "./postgre.ts",
+        "./subs": "./subs.ts",
         "./s3": "./s3.ts"
     },
     "module": "index.ts",
