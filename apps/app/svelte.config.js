@@ -13,7 +13,7 @@ export default {
         adapter: adapter(),
         alias: {
             $components: resolve('src', 'components'),
-            $remote: resolve('lib', 'remote'),
+            $remotes: resolve('template', 'remotes'),
             $sections: resolve('src', 'sections'),
             $stores: resolve('lib', 'stores'),
             $styles: resolve('src', 'styles'),
@@ -22,7 +22,7 @@ export default {
         //     checkOrigin: false,
         // },
         experimental: {
-            remoteFunctions: true,
+            remoteFunctions: true
         },
         files: {
             appTemplate: resolve('template', 'index.html'),

@@ -15,24 +15,26 @@ const app = new Elysia({
     .use(
         logixlysia({
             config: {
-              showStartupMessage: true,
-              startupMessageFormat: 'simple',
-              timestamp: {
-                translateTime: 'yyyy-mm-dd HH:MM:ss'
-              },
-              ip: true
+                showStartupMessage: true,
+                startupMessageFormat: 'simple',
+                timestamp: {
+                    translateTime: 'yyyy-mm-dd HH:MM:ss'
+                },
+                ip: true
             }
-          })
+        })
     )
     .use(docs)
     .use(origin())
     .use(etag({
         algorithm: 'sha512',
     }))
-    .use(routes)
-    .listen(apiConfig.PORT_API_APP);
+    .use(routes);
 
-export default app.fetch;
+export default {
+    fetch: app.fetch,
+    port: apiConfig.PORT_API_APP
+};
 
 export type API = typeof app;
 

@@ -6,12 +6,13 @@
     interface Props {
         signature?: Snippet<[]> | string;
         elems: Snippet<[]>;
+        footer: Snippet<[]>;
         title?: Snippet<[]> | string;
     }
 </script>
 
 <script lang="ts">
-    let { signature, elems, title }: Props = $props();
+    let { signature, elems, title, footer }: Props = $props();
 </script>
 
 
@@ -19,7 +20,7 @@
     "[[data-slot=block]]:not-first:[&_[data-slot=card]]:rounded-t-sm",
     "[[data-slot=block]]:not-last:[&_[data-slot=card]]:rounded-b-sm",
     // "[[data-slot=block]]:not-last:mb-4",
-    "px-2"
+    "px-3"
 ]}>
     <Card.Root>
         <Card.Header class="px-4">
@@ -37,11 +38,17 @@
                 {@render elems?.()}
             </ul>
         </Card.Content>
+
+        {#if footer}
+          <Card.Footer>
+              {@render footer()}
+          </Card.Footer>
+        {/if}
     </Card.Root>
 
 
     {#if typeof signature === 'string'}
-        <p class="px-2 mt-2 text-[10px] text-pretty text-muted-foreground text-center font-mono">{signature}</p>
+        <p class="px-2 mt-2 text-[11px] text-pretty text-muted-foreground text-center font-mono">{signature}</p>
     {:else if signature}
         {@render signature()}
     {/if}

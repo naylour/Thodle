@@ -6,34 +6,30 @@
 
     interface Props {
         children: Snippet<[]>;
+        icon?: Snippet<[]>;
         href?: string;
+        hover?: boolean;
     }
 </script>
 
 <script lang="ts">
-    let { children, href }: Props = $props();
+    let { children, href, icon, hover = true }: Props = $props();
 </script>
 
 
-<div data-slot="block-item" class={[
-    "rounded-sm text-start",
-    "has-[>svg]:grid has-[>svg]:grid-cols-[50px_1fr] gap-2",
-    !href && "[&>div]:py-4 px-2 hover:bg-gray-200/10",
-    "has-[button]:not-last:[&_button>div]:border-b border-muted",
-    "has-[button]:[&_button>div]:w-full",
-    "not-last:[&>div]:border-b border-muted",
-    "[&>div]:w-full",
-    "not-[has-[button]]:items-center"
+<Button data-slot="block-item" clear {href} class={[
+    "flex items-center px-3 gap-3",
+    "text-sm transition-all",
+    "not-last:[&_[data-slot=block-item-content]]:border-b rounded-md",
+    hover && "hover:bg-gray-300/10 hover:cursor-pointer active:bg-gray-300/15",
+    "[&_svg]:stroke-[2px]"
 ]}>
-    {#if href}
-      <Button class={[
-          "w-full justify-start [&>div]:py-4 py-0! h-auto rounded-md",
-          "bg-transparent hover:bg-gray-200/10",
-          "[&_svg]:size-5! stroke-[1px]! text-start"
-      ]}>
-    {@render children?.()}
-      </Button>
-    {:else}
+        {#if icon}
+    <div>
+          {@render icon()}
+    </div>
+        {/if}
+    <div data-slot="block-item-content" class="py-4 w-full">
         {@render children?.()}
-    {/if}
-</div>
+    </div>
+</Button>

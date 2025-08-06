@@ -50,6 +50,7 @@
             size?: ButtonSize;
             round?: ButtonRound;
             loading?: boolean;
+            clear?: boolean;
         };
 </script>
 
@@ -63,6 +64,7 @@
         type = "button",
         round = "default",
         loading = false,
+        clear = false,
         disabled,
         children,
         ...restProps
@@ -73,7 +75,7 @@
     <a
         bind:this={ref}
         data-slot="button"
-        class={cn(buttonVariants({ variant, size, round }), className)}
+        class={cn(!clear ? buttonVariants({ variant, size, round }) : '', className)}
         href={disabled ? undefined : href}
         aria-disabled={disabled}
         role={disabled ? "link" : undefined}
@@ -86,7 +88,7 @@
     <button
         bind:this={ref}
         data-slot="button"
-        class={cn(buttonVariants({ variant, size, round }), className)}
+        class={cn(!clear ? buttonVariants({ variant, size, round }) : '', className)}
         {type}
         {disabled}
         {...restProps}

@@ -37,17 +37,10 @@ import Helps from "./Helps.svelte";
 </script>
 
 <article id="settings" class={[
-    "flex flex-col gap-3",
+    "flex flex-col gap-5",
     // "[&_section]:not-first:[&_[data-slot=card]]:rounded-t-[10px]",
     // "[&_section]:not-last:[&_[data-slot=card]]:rounded-b-[10px]",
 ]}>
     <Theme />
     <Helps />
-
-
-    <BlockRoot title="Настройки темы" signature=" Мы всегда готовы помочь вам сделать использование приложения максимально удобным!">
-        {#snippet elems()}
-            Hello
-        {/snippet}
-    </BlockRoot>
 </article>
