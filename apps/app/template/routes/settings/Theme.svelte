@@ -8,7 +8,7 @@
 </script>
 
 
-<BlockRoot title="Цвета">
+<BlockRoot title="Цвета" class="px-3">
     {#snippet elems()}
         <BlockItem hover={false}>
             <ChangeMode />
@@ -18,9 +18,9 @@
         </BlockItem>
     {/snippet}
 
-    {#snippet footer()}
+    <!-- {#snippet footer()}
         <div class="mt-3 px-4">
             Hello
         </div>
-    {/snippet}
+    {/snippet} -->
 </BlockRoot>

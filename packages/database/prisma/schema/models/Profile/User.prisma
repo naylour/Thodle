@@ -6,11 +6,12 @@ model User {
     firstName  String  @map("first_name")
     patronymic String?
 
-    email String?
-    phone String?
+    email    String? @unique
+    phone    String? @unique
+    username String? @unique
 
-    TelegramAccount TelegramAccount[]
-    MaxAccount      MaxAccount[]
+    TelegramAccounts TelegramAccount[]
+    MaxAccounts      MaxAccount[]
 
     updatedAt DateTime @updatedAt @map("updated_at")
 

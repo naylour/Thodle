@@ -25,10 +25,5 @@
         "preview": "./build/server",
         "start": "./build/server"
     },
-    "exports": {
-        ".": {
-            "types": "./src/index.ts"
-        }
-    },
     "type": "module"
 }

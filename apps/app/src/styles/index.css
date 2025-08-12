@@ -14,9 +14,9 @@
     @apply selection:bg-primary selection:text-primary-foreground;
   }
     body {
-        @apply relative bg-background text-foreground font-sans pt-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))];
+        @apply relative text-foreground/10 font-sans pt-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))];
         @apply pb-[calc(var(--tma-content-safe-area-inset-bottom)+var(--tma-safe-area-inset-bottom))] w-dvw overflow-x-hidden;
-        /*@apply px-2;*/
+        @apply bg-background;
     }
 
     :root:not([data-load=""]) body {
@@ -24,9 +24,21 @@
     }
 }
 
+@theme {
+    --animate-pulse-alt: pulse-alt 1s ease-in infinite;
+
+    @keyframes pulse-alt {
+        from, to {
+            scale: 1;
+        } 50% {
+            scale: 1.1;
+        }
+    }
+}
+
 
 :root {
-    --radius: 1rem;
+    --radius: .75rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);

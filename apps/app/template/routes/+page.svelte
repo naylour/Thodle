@@ -7,14 +7,23 @@
     import SurveyIcon from "@lucide/svelte/icons/notebook";
 
     import { onMount } from "svelte";
+    import { toast } from "svelte-sonner";
+
+    import { getUser } from "$remotes/user.remote";
 </script>
 
 <script lang="ts">
     const tma = useTMA();
+
+    const user = $derived(getUser(tma.initDataRaw))
 </script>
 
-<article id="main">
-    <Tabs.Root value="schedule">
+<article id="main" class="pt-2 px-3">
+    <Tabs.Root value="schedule" onValueChange={() => {
+        toast.success('Yeah', {
+            duration: 10000
+        })
+    }}>
         <Tabs.List
             class="[&_button]:data-[state=active]:bg-primary! [&_button]:data-[state=active]:text-primary-foreground! [&_button]:rounded-xl"
         >

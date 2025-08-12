@@ -32,7 +32,11 @@
     ]
 </script>
 
-<BlockRoot title="Помощь" signature=" Мы всегда готовы помочь вам сделать использование приложения максимально удобным!">
+<BlockRoot
+    title="Помощь"
+    class="px-3"
+    signature="Мы всегда готовы помочь вам сделать использование приложения максимально удобным!"
+>
     {#snippet elems()}
         {#each buttons as { icon, label, href }, i (i)}
             {@const Icon = icon}

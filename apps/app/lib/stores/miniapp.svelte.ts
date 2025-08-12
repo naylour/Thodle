@@ -9,13 +9,13 @@ import {
     hapticFeedback,
     init,
     initData,
+    initDataRaw,
     isColorDark,
     mainButton,
     miniApp,
     on,
     retrieveLaunchParams,
     secondaryButton,
-    // on,
     settingsButton,
     swipeBehavior,
     themeParams,
@@ -24,7 +24,6 @@ import {
 } from '@telegram-apps/sdk-svelte';
 import kebabCase from 'lodash.kebabcase';
 import { setMode } from 'mode-watcher';
-// import { setMode } from 'mode-watcher';
 import { getContext, setContext } from 'svelte';
 import { fromStore } from 'svelte/store';
 import { browser } from '$app/environment';
@@ -54,9 +53,17 @@ class TMA {
     get initData() {
         return fromStore(useSignal(initData.state)).current;
     }
+    get initDataRaw() {
+        return fromStore(useSignal(initDataRaw)).current;
+    }
     get user() {
         return this.initData?.user;
     }
+
+    fullscreen = $state<{ available: null | boolean; state: boolean; }>({
+        available: null,
+        state: false
+    })
 
     isDark = $state.raw(false);
 
@@ -223,15 +230,18 @@ class TMA {
         if (viewport.mount.isAvailable()) {
             await viewport.mount();
 
+            this.fullscreen.available = viewport.requestFullscreen.isSupported() &&
+            ['android', 'ios'].includes(
+                retrieveLaunchParams().tgWebAppPlatform,
+            ) &&
+            viewport.requestFullscreen.isAvailable()
+
             if (
                 !viewport.isFullscreen() &&
-                viewport.requestFullscreen.isSupported() &&
-                ['android', 'ios'].includes(
-                    retrieveLaunchParams().tgWebAppPlatform,
-                ) &&
-                viewport.requestFullscreen.isAvailable()
+                this.fullscreen.available
             ) {
                 viewport.requestFullscreen();
+                this.fullscreen.state = true;
             }
             if (
                 !viewport.isCssVarsBound() &&

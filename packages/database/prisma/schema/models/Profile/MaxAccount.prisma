@@ -6,7 +6,7 @@ model MaxAccount {
     lastName  String? @map("last_name")
     firstName String  @map("first_name")
     username  String? @unique
-    user      String  @unique
+    user      String
     lang      String?
 
     User User @relation(fields: [user], references: [id])

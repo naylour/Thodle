@@ -1,11 +1,37 @@
 <script lang="ts" module>
-    import { asset } from "$app/paths";
-    import { useApp } from "$stores";
+    import { useApp, useTMA } from "$stores";
     import { fade, scale } from "svelte/transition";
 </script>
 
 <script lang="ts">
     const app = useApp();
+    const tma = useTMA();
+
+    let showIcon = $state(false);
+
+    let iconTimout = $state<NodeJS.Timeout>()
+
+    $effect.root(() => {
+        $effect(() => {
+            if(!showIcon) {
+                if(tma.fullscreen.available !== null) {
+                    if(tma.fullscreen.available) {
+                        if(tma.fullscreen.state) {
+                            iconTimout = setTimeout(() => {
+                                showIcon = true
+                            }, 300);
+                        }
+                    } else {
+                        showIcon = true
+                    }
+                }
+            }
+        })
+
+        return () => {
+            clearTimeout(iconTimout);
+        }
+    });
 </script>
 
 {#if !app.isLoad}
@@ -20,11 +46,17 @@
         }}
     >
         <div class="flex flex-col justify-center items-center gap-4">
-            <img
-                src={asset("./logo_clear.svg")}
-                alt="Thodle Logo Clear"
-                class="size-24 animate-pulse-alt"
-            />
+            {#if showIcon}
+                <img
+                    in:scale={{
+                        start: .9,
+                        opacity: .8
+                    }}
+                    src="./logo_clear.svg"
+                    alt="Thodle Logo Clear"
+                    class="size-24 animate-pulse-alt"
+                />
+            {/if}
         </div>
     </aside>
 {/if}

@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import adapter from 'svelte-adapter-bun-next';
+import adapter from 'svelte-adapter-bun';
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
@@ -13,16 +13,13 @@ export default {
         adapter: adapter(),
         alias: {
             $components: resolve('src', 'components'),
-            $remotes: resolve('template', 'remotes'),
+            $remotes: resolve('lib', 'remotes'),
             $sections: resolve('src', 'sections'),
             $stores: resolve('lib', 'stores'),
             $styles: resolve('src', 'styles'),
         },
-        // csrf: {
-        //     checkOrigin: false,
-        // },
         experimental: {
-            remoteFunctions: true
+            remoteFunctions: true,
         },
         files: {
             appTemplate: resolve('template', 'index.html'),
@@ -37,6 +34,13 @@ export default {
             params: resolve('template', 'params'),
             routes: resolve('template', 'routes'),
             serviceWorker: resolve('src', 'service-worker.ts'),
+        },
+        // csrf: {
+        //     checkOrigin: false,
+        // },
+        output: {
+            bundleStrategy: 'single',
+            preloadStrategy: 'modulepreload',
         },
     },
     preprocess: [vitePreprocess()],

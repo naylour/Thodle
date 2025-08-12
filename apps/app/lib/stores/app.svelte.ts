@@ -1,6 +1,6 @@
+import ky from 'ky';
 import { PersistedState } from 'runed';
 import { getContext, setContext } from 'svelte';
-import ky from 'ky';
 
 // biome-ignore assist/source/useSortedKeys: true
 export const Themes = {
@@ -63,16 +63,18 @@ class App {
     themesNames = ThemesName;
 
     state = $state<AppState>({
+        apiURl: '',
         isLoad: false,
         showUserTitleBlock: true,
-        apiURl: ''
     });
 
-    api = $derived(ky.extend({
-        credentials: 'include',
-        throwHttpErrors: false,
-        prefixUrl: this.state.apiURl
-    }))
+    api = $derived(
+        ky.extend({
+            credentials: 'include',
+            prefixUrl: this.state.apiURl,
+            throwHttpErrors: false,
+        }),
+    );
 
     #mode = new PersistedState<AppMode>(
         'app-mode',
@@ -103,7 +105,7 @@ class App {
         else
             setTimeout(() => {
                 this.state.isLoad = value;
-            }, 400);
+            }, 500);
     }
 
     #theme = new PersistedState<Theme>('theme', 'default', {

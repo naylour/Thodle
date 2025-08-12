@@ -10,6 +10,7 @@
 
     import { useApp, useTMA } from "$stores";
     import { buttonVariants } from "./Button.svelte";
+    import { toast } from "svelte-sonner";
 </script>
 
 <script lang="ts">
@@ -67,6 +68,8 @@
                         tma.isDark = app.mode.isDark;
 
                         tma.changeTheme();
+
+                        toast.success('Успешная смена темы!')
                     }}
                 >
                     <Icon />
@@ -75,41 +78,4 @@
             {/each}
         </DropdownMenu.Content>
     </DropdownMenu.Root>
-    <!-- <Radio.Root
-        bind:value={
-            () => appMode,
-            (v) => {
-                if (v == "auto" && !app.mode.auto) app.mode.auto = true;
-                else app.mode.auto = false;
-
-                if (v == "dark") app.mode.isDark = true;
-                if (v == "light") app.mode.isDark = false;
-
-                tma.autoDarkMode = app.mode.auto;
-                tma.isDark = app.mode.isDark;
-
-                tma.changeTheme();
-            }
-        }
-        class={["flex items-center gap-1"]}
-    >
-        {#each modesKeys as mode (mode)}
-            {@const Icon = modes[mode].icon}
-            <Label
-                for="{uid}-{mode}-change-mode"
-                class={[
-                    "py-1 px-2 rounded-[8px]",
-                    "has-[[data-state=checked]]:bg-primary",
-                    "has-[[data-state=checked]]:text-primary-foreground",
-                ]}
-            >
-                <Radio.Item
-                    id="{uid}-{mode}-change-mode"
-                    value={mode}
-                    class="sr-only"
-                />
-                <Icon />
-            </Label>
-        {/each}
-    </Radio.Root> -->
 </div>

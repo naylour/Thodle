@@ -7,6 +7,10 @@
     import { ModeWatcher, resetMode } from "mode-watcher";
     import { onMount } from "svelte";
     import { scale } from "svelte/transition";
+
+    import { Toaster } from '$components/ui/sonner';
+
+    import { getUser } from '$remotes/user.remote';
 </script>
 
 <script lang="ts">
@@ -20,6 +24,8 @@
         tma = setTMAContext();
 
     app.state.apiURl = data.apiURL;
+
+    let user = $derived(getUser(tma.initDataRaw))
 
     $effect(() => {
         app.isLoad = tma.isReady;
@@ -36,22 +42,17 @@
         tma.isDark = app.mode.isDark;
 
         tma.changeTheme()
-
-        app.api.get('user', {
-            headers: {
-                'Accept': 'application/x-msgpack'
-            }
-        })
     });
 </script>
 
+<Toaster />
 <ModeWatcher />
 <Header />
 {#if app.isLoad}
     <div
         class="pt-4"
         transition:scale={{
-            start: 0.8,
+            start: 0.9,
         }}
     >
         {@render children()}

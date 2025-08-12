@@ -5,7 +5,8 @@
     },
     "exports": {
         ".": "./index.ts",
-        "./deviceHosts": "./deviceHosts.ts"
+        "./deviceHosts": "./deviceHosts.ts",
+        "./telegram": "./telegram.ts"
     },
     "module": "index.ts",
     "name": "@repo/utils",

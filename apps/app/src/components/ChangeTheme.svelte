@@ -5,6 +5,7 @@
     import * as Toggle from "$components/ui/toggle-group";
     import { Label } from "$components/ui/label";
     import { ScrollArea } from "$components/ui/scroll-area";
+    import { toast } from "svelte-sonner";
 </script>
 
 <script lang="ts">
@@ -16,7 +17,9 @@
 
 <div class="flex items-center justify-between">
     <Label for="{uid}-change-theme">Цветовая схема</Label>
-    <Select.Root id="{uid}-change-theme" type="single" bind:value={app.theme}>
+    <Select.Root  type="single" bind:value={app.theme} onValueChange={() => {
+        toast.success('Успешная смена цвета!')
+    }}>
         <Select.Trigger>
             <div class="bg-primary aspect-square w-4 rounded-full"></div>
             {app.themesNames[app.theme]}

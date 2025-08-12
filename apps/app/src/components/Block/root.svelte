@@ -6,13 +6,14 @@
     interface Props {
         signature?: Snippet<[]> | string;
         elems: Snippet<[]>;
-        footer: Snippet<[]>;
+        footer?: Snippet<[]>;
         title?: Snippet<[]> | string;
+        class?: string;
     }
 </script>
 
 <script lang="ts">
-    let { signature, elems, title, footer }: Props = $props();
+    let { signature, elems, title, footer, class: _class }: Props = $props();
 </script>
 
 
@@ -20,7 +21,7 @@
     "[[data-slot=block]]:not-first:[&_[data-slot=card]]:rounded-t-sm",
     "[[data-slot=block]]:not-last:[&_[data-slot=card]]:rounded-b-sm",
     // "[[data-slot=block]]:not-last:mb-4",
-    "px-3"
+    _class
 ]}>
     <Card.Root>
         <Card.Header class="px-4">
