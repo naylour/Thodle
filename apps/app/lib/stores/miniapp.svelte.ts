@@ -60,10 +60,7 @@ class TMA {
         return this.initData?.user;
     }
 
-    fullscreen = $state<{ available: null | boolean; state: boolean; }>({
-        available: null,
-        state: false
-    })
+    fullscreenAvailable = $state<null | boolean>(null);
 
     isDark = $state.raw(false);
 
@@ -110,11 +107,11 @@ class TMA {
     });
 
     constructor() {
+        this.#initReady = false;
         if (browser) {
             init({
                 acceptCustomStyles: true,
             });
-            this.#initReady = true;
 
             this.#initMiniApp();
             this.#initThemeParams();
@@ -128,6 +125,7 @@ class TMA {
                     this.#theme(params.theme_params.bg_color);
             });
             this.#theme(themeParams.backgroundColor());
+            this.#initReady = true;
         }
 
         $effect.root(() => {
@@ -175,6 +173,8 @@ class TMA {
     };
 
     #initMiniApp = () => {
+        this.#miniAppReady = false;
+
         if (miniApp.mountSync.isAvailable()) {
             miniApp.mountSync();
 
@@ -213,6 +213,8 @@ class TMA {
     })();
 
     #initThemeParams = () => {
+        this.#themeParamsReady = false;
+
         if (themeParams.mountSync.isAvailable()) {
             themeParams.mountSync();
 
@@ -227,10 +229,13 @@ class TMA {
         }
     };
     #initViewport = async () => {
+        this.#viewportReady = false;
+        this.fullscreenAvailable = null;
+
         if (viewport.mount.isAvailable()) {
             await viewport.mount();
 
-            this.fullscreen.available = viewport.requestFullscreen.isSupported() &&
+            this.fullscreenAvailable = viewport.requestFullscreen.isSupported() &&
             ['android', 'ios'].includes(
                 retrieveLaunchParams().tgWebAppPlatform,
             ) &&
@@ -238,10 +243,9 @@ class TMA {
 
             if (
                 !viewport.isFullscreen() &&
-                this.fullscreen.available
+                this.fullscreenAvailable
             ) {
                 viewport.requestFullscreen();
-                this.fullscreen.state = true;
             }
             if (
                 !viewport.isCssVarsBound() &&

@@ -1,0 +1,14 @@
+model Discipline {
+    id String @id @default(ulid())
+
+    name String
+
+    shortName String? @map("short_name")
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    lessons Lesson[]
+
+    @@map("Disciplines")
+    @@schema("study")
+}

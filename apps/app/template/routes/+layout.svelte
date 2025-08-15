@@ -31,6 +31,10 @@
         app.isLoad = tma.isReady;
     });
 
+    $effect(() => {
+        if(tma.fullscreenAvailable !== null && tma.fullscreenAvailable) app.loadTimeout = 800;
+    })
+
 
     $effect(() => {
         tma.themeColors.primary = app.themes[app.theme];
@@ -50,7 +54,7 @@
 <Header />
 {#if app.isLoad}
     <div
-        class="pt-4"
+        id="wrapper"
         transition:scale={{
             start: 0.9,
         }}

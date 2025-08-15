@@ -1,0 +1,49 @@
+model University {
+    id String @id @default(ulid())
+
+    name     String
+    fullName String  @map("full_name")
+    address  String?
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    Address Address? @relation(fields: [address], references: [id])
+
+    buildings   Building[]
+    clusters    Cluster[]
+    times       Time[]
+    lessons     Lesson[]
+    groups      Group[]
+    weeks       UniversityWeek[]
+    schedules   Schedule[]
+    scheduleFixes ScheduleFix[]
+
+    @@map("Universities")
+    @@schema("university")
+}
+
+model UniversityWeek {
+    id String @id @default(ulid())
+
+    name String
+
+    week       Week
+    university String
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    University University @relation(fields: [university], references: [id])
+
+    @@unique([week, university])
+    @@map("UniversityWeeks")
+    @@schema("university")
+}
+
+enum Week {
+    FIRST   @map("schedule_week_first")
+    SECOND  @map("schedule_week_second")
+    ANOTHER @map("schedule_week_another")
+
+    @@map("Weeks")
+    @@schema("university")
+}

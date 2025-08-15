@@ -30,7 +30,7 @@
         <LoadingIcon class="animate-spin text-primary" />
 	{/snippet}
 	{#snippet successIcon()}
-		<SuccessIcon class="text-green-500" />
+		<SuccessIcon class="text-primary" />
 	{/snippet}
 	{#snippet errorIcon()}
 		<ErrorIcon class="text-red-500" />

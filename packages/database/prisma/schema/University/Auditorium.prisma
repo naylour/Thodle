@@ -1,0 +1,17 @@
+model Auditorium {
+    id String @id @default(ulid())
+
+    name String
+    shortName String? @map("short_name")
+
+    building String
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    Building Building @relation(fields: [building], references: [id])
+
+    lessons Lesson[]
+
+    @@map("Auditoriums")
+    @@schema("university")
+}

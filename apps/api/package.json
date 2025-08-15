@@ -11,7 +11,7 @@
         "@repo/env": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@repo/utils": "workspace:*",
-        "@types/bun": "latest"
+        "@types/bun": "1.2.20"
     },
     "module": "index.ts",
     "name": "@app/api",

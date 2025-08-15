@@ -12,26 +12,28 @@
             "dependsOn": ["^check-types"]
         },
         "db:deploy": {
-            "cache": false
+            "cache": false,
+            "env": ["POSTGRE_URL"],
+            "persistent": true
         },
         "db:generate": {
             "cache": false
+        },
+        "db:migrate": {
+            "cache": false,
+            "env": ["POSTGRE_URL"],
+            "persistent": true
         },
         "db:studio": {
             "cache": false,
             "env": ["POSTGRE_URL"]
         },
-        "db:migrate": {
-            "cache": false,
-            "persistent": true,
-            "env": ["POSTGRE_URL"]
-        },
         "dev": {
             "cache": false,
+            "dependsOn": ["^db:generate"],
             "env": ["*"],
             "inputs": ["$TURBO_DEFAULT$", ".env"],
-            "persistent": true,
-            "dependsOn": ["^db:generate"]
+            "persistent": true
         },
         "lint": {
             "dependsOn": ["^lint"]

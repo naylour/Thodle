@@ -1,10 +1,9 @@
 <script lang="ts" module>
-    import { Schedule, Button } from "$components";
+    import { Schedule, Button, Title } from "$components";
     import * as Tabs from "$components/ui/tabs";
     import { useTMA } from "$stores";
 
-    import CalendarIcon from "@lucide/svelte/icons/calendar-1";
-    import SurveyIcon from "@lucide/svelte/icons/notebook";
+    import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 
     import { onMount } from "svelte";
     import { toast } from "svelte-sonner";
@@ -19,27 +18,28 @@
 </script>
 
 <article id="main" class="pt-2 px-3">
-    <Tabs.Root value="schedule" onValueChange={() => {
-        toast.success('Yeah', {
-            duration: 10000
-        })
-    }}>
-        <Tabs.List
-            class="[&_button]:data-[state=active]:bg-primary! [&_button]:data-[state=active]:text-primary-foreground! [&_button]:rounded-xl"
-        >
-            <Tabs.Trigger value="schedule">
-                <CalendarIcon /> Расписание
-            </Tabs.Trigger>
-            <Tabs.Trigger value="surveys">
-                <SurveyIcon /> Опросы
-            </Tabs.Trigger>
+    <Tabs.Root value="schedule">
+        <Tabs.List>
+            <Tabs.Trigger value="schedule">Расписание</Tabs.Trigger>
+            <Tabs.Trigger value="survey">Опросы</Tabs.Trigger>
         </Tabs.List>
 
         <Tabs.Content value="schedule">
-            <Schedule />
+            <Schedule  />
         </Tabs.Content>
-        <Tabs.Content value="surveys">
-            <p class="muted text-center py-5">Скоро будут опросы</p>
+        <Tabs.Content value="survey">
+            <div class="py-5">
+                <p class="text-center text-muted-foreground">Тут скоро будут опросы!</p>
+            </div>
         </Tabs.Content>
     </Tabs.Root>
+
+    <section class="mt-8">
+        <header class="flex items-center justify-between gap-2">
+             <Title level={2} weight="semibold">АГУ</Title>
+             <Button href="/university" variant="link" class="h-auto p-0 gap-1">
+                 Перейти <ChevronRightIcon />
+             </Button>
+        </header>
+    </section>
 </article>

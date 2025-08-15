@@ -1,0 +1,50 @@
+model Schedule {
+    id String @id @default(ulid())
+
+    week Week
+    day  Day
+    university String
+
+    lessons LessonSchedule[]
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    University   University @relation(fields: [university], references: [id], onDelete: Cascade)
+
+    @@map("Schedules")
+    @@schema("university")
+
+    @@unique([week, day, university])
+}
+
+model ScheduleFix {
+    id String @id @default(ulid())
+
+    week Week
+    day  Day
+    university String
+
+    lessons LessonSchedule[]
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    University   University @relation(fields: [university], references: [id], onDelete: Cascade)
+
+    @@map("ScheduleFixes")
+    @@schema("university")
+
+    @@unique([week, day, university])
+}
+
+enum Day {
+    MONDAY    @map("schedule_day_monday")
+    TUESDAY   @map("schedule_day_tuesday")
+    WEDNESDAY @map("schedule_day_wednesday")
+    THURSDAY  @map("schedule_day_thursday")
+    FRIDAY    @map("schedule_day_friday")
+    SATURDAY  @map("schedule_day_saturday")
+    SUNDAY    @map("schedule_day_sunday")
+
+    @@map("ScheduleDays")
+    @@schema("university")
+}

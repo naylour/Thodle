@@ -1,0 +1,17 @@
+model Building {
+    id String @id @default(ulid())
+
+    name String
+
+    university String
+    address    String?
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    Address    Address?    @relation(fields: [address], references: [id])
+    University University  @relation(fields: [university], references: [id], onDelete: Cascade)
+    auditoriums Auditorium[]
+
+    @@map("Buildings")
+    @@schema("university")
+}

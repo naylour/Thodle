@@ -1,14 +1,9 @@
 <script lang="ts" module>
-    import * as Card from "$components/ui/card";
-    import { Button } from "$components/ui/button";
-    import { Title } from "$components";
-
     import QuestionIcon from "@lucide/svelte/icons/message-circle-more";
     import QuestionAppIcon from "@lucide/svelte/icons/circle-question-mark";
     import PrivacyIcon from "@lucide/svelte/icons/shield-check";
     import { BlockRoot } from "$components/Block";
     import BlockItem from "$components/Block/block-item.svelte";
-    import { Icon } from "@lucide/svelte";
 
     const buttons = [
         {
@@ -29,7 +24,7 @@
             href: '#',
             type: 'internal'
         },
-    ]
+    ] as const;
 </script>
 
 <BlockRoot

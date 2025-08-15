@@ -3,6 +3,7 @@ model MaxAccount {
 
     maxID BigInt @unique @map("max_id")
 
+    avatar    String?
     lastName  String? @map("last_name")
     firstName String  @map("first_name")
     username  String? @unique

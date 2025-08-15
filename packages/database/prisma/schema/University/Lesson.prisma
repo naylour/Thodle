@@ -1,0 +1,50 @@
+model Lesson {
+    id String @id @default(ulid())
+
+    discipline String
+    teacher    String?
+    auditorium String?
+    university String
+    group      String
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    schedules LessonSchedule[]
+
+    Discipline Discipline  @relation(fields: [discipline], references: [id], onDelete: Cascade)
+    University University  @relation(fields: [university], references: [id], onDelete: Cascade)
+    Group      Group       @relation(fields: [group], references: [id], onDelete: Cascade)
+    Teacher    Teacher?    @relation(fields: [teacher], references: [id], onDelete: SetNull)
+    Auditorium Auditorium? @relation(fields: [auditorium], references: [id], onDelete: SetNull)
+
+    @@map("Lessons")
+    @@schema("university")
+}
+
+model LessonSchedule {
+    id String @id @default(ulid())
+
+    order    Int
+    lesson  String
+    type     LessonType
+    time     String?
+    schedule String
+    scheduleFix String?
+
+    Lesson        Lesson       @relation(fields: [lesson], references: [id], onDelete: Cascade)
+    Time          Time?        @relation(fields: [time], references: [id], onDelete: Cascade)
+    Schedule      Schedule     @relation(fields: [schedule], references: [id])
+    ScheduleFix   ScheduleFix? @relation(fields: [scheduleFix], references: [id], onDelete: SetNull)
+
+    @@map("LessonSchedules")
+    @@schema("university")
+}
+
+enum LessonType {
+    LECTION  @map("lesson_type_lection")
+    PRACTICE @map("lesson_type_practice")
+    ACTIVITY @map("lesson_type_activity")
+
+    @@map("LessonTypes")
+    @@schema("university")
+}

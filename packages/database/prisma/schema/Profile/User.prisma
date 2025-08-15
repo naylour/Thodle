@@ -10,10 +10,17 @@ model User {
     phone    String? @unique
     username String? @unique
 
-    TelegramAccounts TelegramAccount[]
-    MaxAccounts      MaxAccount[]
-
     updatedAt DateTime @updatedAt @map("updated_at")
+
+    meta Meta?
+
+    Teacher Teacher?
+    Curator Curator?
+
+    telegramAccounts TelegramAccount[]
+    maxAccounts      MaxAccount[]
+    groupHead        GroupHead?
+    student          Student?
 
     @@map("Users")
     @@schema("user")

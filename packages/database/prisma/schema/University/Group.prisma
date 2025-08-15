@@ -1,0 +1,50 @@
+model Group {
+    id String @id @default(ulid())
+
+    name String
+    year String
+    fullName String? @map("full_name")
+
+    cluster    String
+    university String
+    curator    String? @unique
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    heads      GroupHead[]
+    Cluster    Cluster     @relation(fields: [cluster], references: [id])
+    University University  @relation(fields: [university], references: [id])
+    lessons    Lesson[]
+    students   Student[]
+    Curator    Curator?    @relation(fields: [curator], references: [id], onDelete: SetNull)
+
+    @@map("Groups")
+    @@schema("university")
+}
+
+model GroupHead {
+    id String @id @default(ulid())
+
+    user    String? @unique
+    cluster String
+    group   String
+
+    status GroupHeadStatus
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    User    User?   @relation(fields: [user], references: [id], onDelete: SetNull)
+    Cluster Cluster @relation(fields: [cluster], references: [id])
+    Group   Group   @relation(fields: [group], references: [id], onDelete: Cascade)
+
+    @@unique([group, status])
+    @@map("GroupHeads")
+    @@schema("university")
+}
+
+enum GroupHeadStatus {
+    FIRST  @map("group_head_status_first")
+    SECOND @map("group_head_status_second")
+
+    @@schema("university")
+}

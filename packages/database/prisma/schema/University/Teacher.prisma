@@ -1,0 +1,16 @@
+model Teacher {
+    id String @id @default(ulid())
+
+    user    String  @unique
+    cluster String?
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    User    User     @relation(fields: [user], references: [id], onDelete: Cascade)
+    Cluster Cluster? @relation(fields: [cluster], references: [id], onDelete: SetNull)
+
+    lessons Lesson[]
+
+    @@map("Teachers")
+    @@schema("university")
+}

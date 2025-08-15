@@ -1,0 +1,17 @@
+model Address {
+    id String @id @default(ulid())
+
+    name     String
+    fullName String @map("full_name")
+
+    longitude Float @map("lon")
+    latitude  Float @map("lng")
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    buildings  Building[]
+    universities University[]
+
+    @@map("Addresses")
+    @@schema("default")
+}

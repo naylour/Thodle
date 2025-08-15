@@ -14,18 +14,25 @@
     @apply selection:bg-primary selection:text-primary-foreground;
   }
     body {
-        @apply relative text-foreground/10 font-sans pt-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))];
+        @apply relative text-foreground font-sans pt-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))];
         @apply pb-[calc(var(--tma-content-safe-area-inset-bottom)+var(--tma-safe-area-inset-bottom))] w-dvw overflow-x-hidden;
         @apply bg-background;
     }
 
-    :root:not([data-load=""]) body {
+    /*:root:not([data-load=""]) body {
         @apply h-dvh overflow-y-hidden;
+    }*/
+
+    :root[data-pathname="/profile"] body {
+        @apply bg-secondary;
+    }
+    :root:not([data-pathname="/profile"]) #wrapper {
+        @apply pt-4;
     }
 }
 
 @theme {
-    --animate-pulse-alt: pulse-alt 1s ease-in infinite;
+    --animate-pulse-alt: pulse-alt 2s ease-in infinite;
 
     @keyframes pulse-alt {
         from, to {

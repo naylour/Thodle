@@ -27,7 +27,7 @@
         <Card.Header class="px-4">
             <Card.Title>
                 {#if typeof title === 'string'}
-                  <Title level={3} weight="semibold" class="text-primary text-xs">{title}</Title>
+                  <Title level={3} weight="semibold" class="text-primary text-sm">{title}</Title>
                 {:else if title}
                     {@render title()}
                 {/if}

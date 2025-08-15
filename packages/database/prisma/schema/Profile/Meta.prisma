@@ -1,0 +1,12 @@
+model Meta {
+    id String @id @default(ulid())
+
+    user String @unique
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    User User @relation(fields: [user], references: [id], onDelete: Cascade)
+
+    @@map("Metas")
+    @@schema("user")
+}

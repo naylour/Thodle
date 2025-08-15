@@ -1,0 +1,20 @@
+model Cluster {
+    id String @id @default(ulid())
+
+    name String
+    shortName String? @map("short_name")
+
+    university String
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    University University @relation(fields: [university], references: [id], onDelete: Cascade)
+
+    teachers   Teacher[]
+    curators   Curator[]
+    groupHeads GroupHead[]
+    groups      Group[]
+
+    @@map("Clusters")
+    @@schema("university")
+}

@@ -21,8 +21,10 @@ export const getUser = query(z.any(), async (initData) => {
                 data: {
                     avatar: result.photo_url,
                     firstName: result.first_name,
-                    TelegramAccount: {
+                            lastName: result.last_name,
+                    telegramAccounts: {
                         create: {
+                            avatar: result.photo_url,
                             firstName: result.first_name,
                             lang: result.language_code,
                             lastName: result.last_name,
@@ -30,6 +32,7 @@ export const getUser = query(z.any(), async (initData) => {
                             username: result.username,
                         },
                     },
+                    username: result.username,
                 },
             });
 

@@ -1,0 +1,30 @@
+model Time {
+    id String @id @default(ulid())
+
+    name String
+
+    start      String
+    end        String
+    breakStart String? @map("break_start")
+    breakEnd   String? @map("break_end")
+
+    type TimeType
+
+    university String
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    University University        @relation(fields: [university], references: [id], onDelete: Cascade)
+    lessons   LessonSchedule[]
+
+    @@map("Times")
+    @@schema("universal")
+}
+
+enum TimeType {
+    DEFAULT @map("time_variant_default")
+    STUDY   @map("time_variant_study")
+
+    @@map("TimeTypes")
+    @@schema("universal")
+}

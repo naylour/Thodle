@@ -1,59 +1,90 @@
 <script lang="ts" module>
     import { useTMA, useApp } from "$stores";
     import * as Avatar from "$components/ui/avatar";
-    import { Button, Title } from "$components";
+    import { Button } from "$components/ui/button";
+    import { Title } from "$components";
     import { onDestroy, onMount } from "svelte";
+    import { getUser } from "$remotes/user.remote";
+
+    import EditIcon from '@lucide/svelte/icons/user-round-pen';
 </script>
 
 <script lang="ts">
     const tma = useTMA();
     const app = useApp();
 
-    const user = $derived(tma.user);
-
-    // onMount(() => {
-    //     app.state.showUserTitleBlock = false;
-    // })
-    // onDestroy(() => {
-    //     app.state.showUserTitleBlock = true;
-    // })
+    const user = $derived(getUser(tma.initDataRaw));
 </script>
 
-<article id="profile">
-    {#if user}
-        <header class="w-dvw -ml-3">
-            <div
-                class="bg-secondary flex items-center gap-2 py-2 px-3"
-            >
-                <Avatar.Root class="size-18 border-3 border-primary">
-                    <Avatar.Image src={user.photo_url} />
-                    <Avatar.Fallback class="uppercase"
-                        >{user.first_name.slice(0, 2)}</Avatar.Fallback
-                    >
+<article id="profile" class={[
+    "flex flex-col gap-4",
+    // tma.viewport.isFullscreen && 'pt-2'
+]}>
+    {#if user.current}
+        <header class="">
+            <div class="relative bg-background flex items-center gap-4 py-4 px-3 shadow-sm">
+                <Avatar.Root class="size-18">
+                    <Avatar.Image src={user.current.avatar} />
+                    <Avatar.Fallback class="uppercase">
+                            {user.current.firstName.slice(0, 2)}
+                        </Avatar.Fallback>
                 </Avatar.Root>
 
-                <div class="">
+                <div class="flex flex-col gap-1 items-start justify-center overflow-hidden">
                     <Title
-                        level={3}
+                        level={2}
                         weight="semibold"
-                        class="leading-none line-clamp-1"
+                        class="line-clamp-1 break-all text-lg leading-none!"
                     >
-                        {user.first_name}
-                        {user?.last_name}
+                        {user.current.firstName}
+                        {user.current?.lastName}
                     </Title>
-                    {#if user.username}
+                    {#if user.current.username}
                         <Button
                             variant="link"
-                            class="py-1 px-0"
-                            onclick={() => {}}>{user.username}</Button
+                            class="p-0! h-auto justify-start break-all max-w-[calc(100%-34px)]"
+                            onclick={() => {}}
                         >
+                            <span class="w-full text-ellipsis overflow-hidden text-start">
+                                {user.current.username}
+                            </span>
+                        </Button>
                     {/if}
                 </div>
-            </div>
 
-            <div class="bg-card px-3">
-                Hello
+                <Button class="absolute -bottom-4 right-4 h-auto aspect-square size-15 p-0! rounded-full border-4 border-secondary shadow-none!">
+                    <EditIcon class="size-5! stroke-[1.4] " />
+                </Button>
             </div>
         </header>
     {/if}
+
+    <section class="bg-background shadow-sm py-4 px-3">
+        <p class="line-clamp-1 pb-2 text-primary font-semibold text-sm">Группа</p>
+        <Button clear class="flex items-stretch gap-4 h-full text-start" href="/group">
+            <Avatar.Root class="size-13 ">
+                <!-- <Avatar.Image /> -->
+                <Avatar.Fallback class="text-md font-medium font-mono bg-linear-to-r from-cyan-500 to-blue-500 text-white">
+                    ИБ
+                </Avatar.Fallback>
+            </Avatar.Root>
+
+            <div class="h-full w-full flex flex-col justify-center">
+                <Title level={3} class="text-md font-semibold!">ИБ 2025</Title>
+                <p class=" text-sm">23 студента</p>
+            </div>
+        </Button>
+    </section>
+
+
+    <section class="mt-4">
+        <p class="text-center font-mono text-muted-foreground text-sm">
+            Тут скоро будет Ваша стена!
+        </p>
+    </section>
+    <!-- <section class="bg-background shadow-sm py-4 px-3">
+        <div>
+            Ваша стена
+        </div>
+    </section> -->
 </article>

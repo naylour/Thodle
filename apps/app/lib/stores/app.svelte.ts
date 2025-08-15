@@ -1,6 +1,7 @@
 import ky from 'ky';
 import { PersistedState } from 'runed';
 import { getContext, setContext } from 'svelte';
+import { page } from '$app/state';
 
 // biome-ignore assist/source/useSortedKeys: true
 export const Themes = {
@@ -97,6 +98,8 @@ class App {
         };
     }
 
+    loadTimeout = $state(600);
+
     get isLoad() {
         return this.state.isLoad;
     }
@@ -105,7 +108,7 @@ class App {
         else
             setTimeout(() => {
                 this.state.isLoad = value;
-            }, 500);
+            }, this.loadTimeout);
     }
 
     #theme = new PersistedState<Theme>('theme', 'default', {
@@ -126,6 +129,13 @@ class App {
                 if (this.isLoad)
                     document.documentElement.setAttribute('data-load', '');
                 else document.documentElement.removeAttribute('data-load');
+            });
+
+            $effect(() => {
+                document.documentElement.setAttribute(
+                    'data-pathname',
+                    page.url.pathname,
+                );
             });
 
             $effect(() => {

@@ -3,13 +3,16 @@ model TelegramAccount {
 
     tgID BigInt @unique @map("tg_id")
 
+    avatar    String?
     lastName  String? @map("last_name")
     firstName String  @map("first_name")
     username  String? @unique
     user      String
     lang      String?
 
-    User User @relation(fields: [user], references: [id])
+    User User @relation(fields: [user], references: [id], onDelete: Cascade)
+
+    settings Settings?
 
     updatedAt DateTime @updatedAt @map("updated_at")
 

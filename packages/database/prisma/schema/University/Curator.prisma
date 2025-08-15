@@ -1,0 +1,15 @@
+model Curator {
+    id String @id @default(ulid())
+
+    user    String? @unique
+    cluster String?
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    User    User?    @relation(fields: [user], references: [id], onDelete: Cascade)
+    Cluster Cluster? @relation(fields: [cluster], references: [id], onDelete: SetNull)
+    group   Group?
+
+    @@map("Curators")
+    @@schema("university")
+}

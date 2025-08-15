@@ -1,0 +1,53 @@
+model Settings {
+    id String @id @default(ulid())
+
+    mode  ThemeMode  @default(AUTO)
+    color ThemeColor @default(THODLE)
+
+    telegramAccount String? @unique
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    TelegramAccount TelegramAccount? @relation(fields: [telegramAccount], references: [id], onDelete: Cascade)
+
+    @@map("Settings")
+    @@schema("user")
+}
+
+enum ThemeMode {
+    AUTO  @map("theme_mode_auto")
+    DARK  @map("theme_mode_dark")
+    LIGHT @map("theme_mode_light")
+
+    @@map("ThemeModes")
+    @@schema("user")
+}
+
+enum ThemeColor {
+    THODLE  @map("theme_mode_thodle")
+    AMBER   @map("theme_mode_amber")
+    BLUE    @map("theme_color_blue")
+    CYAN    @map("theme_color_cyan")
+    EMERALD @map("theme_color_emerald")
+    FUCHSIA @map("theme_color_fuchsia")
+    GRAY    @map("theme_color_gray")
+    GREEN   @map("theme_color_green")
+    INDIGO  @map("theme_color_indigo")
+    LIME    @map("theme_color_lime")
+    NEUTRAL @map("theme_color_neutral")
+    ORANGE  @map("theme_color_orange")
+    PINK    @map("theme_color_pink")
+    PURPLE  @map("theme_color_purple")
+    RED     @map("theme_color_red")
+    ROSE    @map("theme_color_rose")
+    SKY     @map("theme_color_sky")
+    SLATE   @map("theme_color_slate")
+    STONE   @map("theme_color_stone")
+    TEAL    @map("theme_color_teal")
+    VIOLET  @map("theme_color_violet")
+    YELLOW  @map("theme_color_yellow")
+    ZINC    @map("theme_color_zinc")
+
+    @@map("ThemeColors")
+    @@schema("user")
+}

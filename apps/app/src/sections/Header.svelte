@@ -10,10 +10,10 @@
 
 <header
     class={[
-        "w-full flex justify-center items-end pb-1.5 px-3",
-        !tma.viewport.isFullscreen && "pt-2",
+        "w-full flex justify-center items-end px-3",
+        // !tma.viewport.isFullscreen && "pt-2",
         tma.viewport.isFullscreen &&
-            "h-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))] fixed top-0 left-[50%] -translate-x-[50%] z-1",
+            "pb-1.5 h-[calc(var(--tma-content-safe-area-inset-top)+var(--tma-safe-area-inset-top))] fixed top-0 left-[50%] -translate-x-[50%] z-1 bg-background",
     ]}
 >
     <UserTitleBlock />

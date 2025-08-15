@@ -1,0 +1,14 @@
+model Student {
+    id String @id @default(ulid())
+
+    user String? @unique
+    group String?
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    User    User?    @relation(fields: [user], references: [id], onDelete: SetNull)
+    Group   Group?  @relation(fields: [group], references: [id], onDelete: SetNull)
+
+    @@map("Students")
+    @@schema("university")
+}

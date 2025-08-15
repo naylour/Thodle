@@ -18,7 +18,11 @@
 <div class="flex items-center justify-between">
     <Label for="{uid}-change-theme">Цветовая схема</Label>
     <Select.Root  type="single" bind:value={app.theme} onValueChange={() => {
-        toast.success('Успешная смена цвета!')
+        toast.success('Успешная смена цвета!', {
+            classes: {
+                icon: 'stroke-primary!'
+            }
+        })
     }}>
         <Select.Trigger>
             <div class="bg-primary aspect-square w-4 rounded-full"></div>

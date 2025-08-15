@@ -2,8 +2,14 @@ generator client {
     provider = "prisma-client-js"
 }
 
+generator markdown {
+  provider = "prisma-markdown"
+  output   = "./ERD.md"
+  title    = "Thodle ERD"
+}
+
 datasource db {
     provider = "postgresql"
     url      = env("POSTGRE_URL")
-    schemas  = ["default", "user"]
+    schemas  = ["default", "user", "university", "study", "universal"]
 }
